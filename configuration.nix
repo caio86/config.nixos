@@ -60,9 +60,9 @@
   services.xserver.desktopManager.plasma5.enable = true;
 
   # Configure keymap in X11
-  services.xserver.xkb = {
+  services.xserver = {
     layout = "br";
-    variant = "";
+    xkbVariant = "";
   };
 
   # Configure console keymap
@@ -112,6 +112,8 @@
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     git
+    cargo
+    rustc
     gcc
     zip
     unzip
