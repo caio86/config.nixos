@@ -10,6 +10,14 @@ myAliases = {
   l = "eza -lah";
   rg = "rg --smart-case";
   cat = "bat -p";
+  fzfd = ''
+    escolhido=$(fd -t d | fzf)
+    if [ -z "$escolhido" ]; then
+      return 0
+    fi
+
+    cd $escolhido
+  '';
 };
 
 in {
@@ -24,21 +32,19 @@ in {
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
     home.packages = with pkgs; [
-      eza
-      ripgrep
+      fzf
       fd
-      bat
     ];
 
-  programs.neovim = {
-    enable = true;
-    package = pkgs.neovim-unwrapped;
-    vimAlias = true;
-    plugins = with pkgs.vimPlugins; [
-      LazyVim
-    ];
-  };
+  # programs.neovim = {
+  # enable = true;
+  #   vimAlias = true;
+  #   plugins = with pkgs.vimPlugins; [
+  #     LazyVim
+  #   ];
+  # };
 
+  programs.starship.enable = true;
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
@@ -47,13 +53,30 @@ in {
     shellAliases = myAliases;
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "git-auto-fetch" ];
+      plugins = [
+       "git"
+       "git-auto-fetch"
+       "command-not-found"
+       "sudo"
+       "aliases"
+      ];
     };
   };
 
-  programs.starship = {
-    enable = true;
+programs.git = {
+  enable = true;
+  userName = "caio86";
+  userEmail = "caioluiz86@gmail.com";
+  extraConfig = {
+    init.defaultBranch = "main";
+    credential.helper = "cache --timeout=7200";
+    core = {
+      autocrlf = false;
+      eol = "lf";
+      editor = "vim";
+    };
   };
+};
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
