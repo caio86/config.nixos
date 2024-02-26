@@ -11,16 +11,36 @@
   outputs = { self, nixpkgs, home-manager, ... }:
 
   let
-    system = "x86_64-linux";
+    # --- SYSTEM SETTINGS --- #
+    systemSettings = {
+      system = "x86_64-linux";
+      hostname = "VEGA";
+      profile = "personal";
+      timezone = "America/Sao_Paulo";
+      locale = "pt_BR.UTF-8";
+    };
+
+    # --- USER SETTINGS --- #
+    userSettings = {
+      username = "caio86";
+      name = "Caio";
+      email = "caioluiz86@gmail.com";
+      editor = "nvim";
+    };
+
+    pkgs = nixpkgs.legacyPackages.${systemSettings.system};
     lib = nixpkgs.lib;
-    pkgs = nixpkgs.legacyPackages.${system};
   in
 
   {
     nixosConfigurations = {
       system = lib.nixosSystem {
-        inherit system;
+        system = systemSettings.system;
         modules = [ ./configuration.nix ];
+        specialArgs = {
+          inherit systemSettings;
+          inherit userSettings;
+        };
       };
     };
 
@@ -28,6 +48,10 @@
       user = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [ ./home.nix ];
+        extraSpecialArgs = {
+          inherit systemSettings;
+          inherit userSettings;
+        };
       };
     };
   };

@@ -1,40 +1,44 @@
-{ pkgs, ... }:
+{ pkgs, userSettings, ... }:
 
 let
-myAliases = {
-  c = "clear";
-  # vim = "nvim";
-  ls = "eza";
-  ll = "eza -lh";
-  lsa = "eza -lah";
-  l = "eza -lah";
-  rg = "rg --smart-case";
-  cat = "bat -p";
-  fzfd = ''
-    escolhido=$(fd -t d | fzf)
-    if [ -z "$escolhido" ]; then
-      return 0
-    fi
+  myAliases = {
+    c = "clear";
+    # vim = "nvim";
+    ls = "eza";
+    ll = "eza -lh";
+    lsa = "eza -lah";
+    l = "eza -lah";
+    rg = "rg --smart-case";
+    cat = "bat -p";
+    fzfd = ''
+      escolhido=$(fd -t d | fzf)
+      if [ -z "$escolhido" ]; then
+        return 0
+      fi
 
-    cd $escolhido
-  '';
-};
+      cd $escolhido
+    '';
+  };
+in
 
-in {
+{
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "caio";
-  home.homeDirectory = "/home/caio";
+  home.username = userSettings.username;
+  home.homeDirectory = "/home/${userSettings.username}";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
-    home.packages = with pkgs; [
-      fzf
-      fd
-    ];
+  home.packages = with pkgs; [
+    ripgrep
+    fzf
+    fd
+    bat
+    eza
+  ];
 
   # programs.neovim = {
   # enable = true;
@@ -65,8 +69,8 @@ in {
 
 programs.git = {
   enable = true;
-  userName = "caio86";
-  userEmail = "caioluiz86@gmail.com";
+  userName = userSettings.username;
+  userEmail = userSettings.email;
   extraConfig = {
     init.defaultBranch = "main";
     credential.helper = "cache --timeout=7200";
@@ -94,6 +98,6 @@ programs.git = {
   };
 
   home.sessionVariables = {
-    EDITOR = "nvim";
+    EDITOR = userSettings.editor;
   };
 }
