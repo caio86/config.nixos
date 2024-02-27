@@ -11,18 +11,8 @@
     ];
 
   # Bootloader.
-  boot.loader = {
-    systemd-boot.enable = false;
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot";
-    };
-    grub = {
-      devices = ["nodev"];
-      enable = true;
-      efiSupport = true;
-    };
-  };
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -35,7 +25,7 @@
   networking.networkmanager.enable = true;
 
   # Set your time zone.
-  time.timeZone = "America/Sao_Paulo";
+  time.timeZone = "America/Fortaleza";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "pt_BR.UTF-8";
@@ -55,14 +45,14 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  # Enable the GNOME Desktop Environment.
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "br";
-    xkbVariant = "";
+    variant = "";
   };
 
   # Configure console keymap
@@ -92,13 +82,12 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.caio = {
+  users.users.caiol = {
     isNormalUser = true;
     description = "Caio Luiz";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       firefox
-    #  kate
     #  thunderbird
     ];
   };
@@ -109,16 +98,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    git
-    cargo
-    rustc
-    gcc
-    zip
-    unzip
-    nodejs
-    nerdfonts
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
