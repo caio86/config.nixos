@@ -22,13 +22,21 @@
 
     # --- USER SETTINGS --- #
     userSettings = {
-      username = "caio86";
+      username = "caiol";
       name = "Caio";
       email = "caioluiz86@gmail.com";
       editor = "nvim";
     };
 
-    pkgs = nixpkgs.legacyPackages.${systemSettings.system};
+    # configure pkgs
+    pkgs = import nixpkgs {
+      system = systemSettings.system;
+      config = {
+        allowUnfree = true;
+      };
+    };
+
+    # configure lib
     lib = nixpkgs.lib;
   in
 
