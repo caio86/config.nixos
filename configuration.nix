@@ -102,6 +102,7 @@
     wget
     zsh
     git
+    pinentry-curses
   ];
 
   environment.shells = with pkgs; [ zsh ];
@@ -115,6 +116,13 @@
     extraPortals = [
       pkgs.xdg-desktop-portal
     ];
+  };
+
+  services.pcscd.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryFlavor = "curses";
+    enableSSHSupport = true;
   };
 
   # Some programs need SUID wrappers, can be configured further or are
