@@ -1,4 +1,4 @@
-{ pkgs, userSettings, ... }:
+{ config, pkgs, userSettings, ... }:
 
 let
   myAliases = {
@@ -38,17 +38,19 @@ in
     fd
     bat
     eza
+    pass
+    wl-clipboard
     discord
     whatsapp-for-linux
   ];
 
-  # programs.neovim = {
-  # enable = true;
-  #   vimAlias = true;
-  #   plugins = with pkgs.vimPlugins; [
-  #     LazyVim
-  #   ];
-  # };
+  programs.neovim = {
+  enable = true;
+    vimAlias = true;
+    plugins = with pkgs.vimPlugins; [
+      LazyVim
+    ];
+  };
 
   programs.starship.enable = true;
   programs.zsh = {
@@ -69,35 +71,36 @@ in
     };
   };
 
-programs.git = {
-  enable = true;
-  userName = "caio86";
-  userEmail = userSettings.email;
-  extraConfig = {
-    init.defaultBranch = "main";
-    credential.helper = "cache --timeout=7200";
-    core = {
-      autocrlf = false;
-      eol = "lf";
-      editor = "vim";
+  programs.git = {
+    enable = true;
+    userName = "caio86";
+    userEmail = userSettings.email;
+    extraConfig = {
+      init.defaultBranch = "main";
+      credential.helper = "cache --timeout=7200";
+      core = {
+        autocrlf = false;
+        eol = "lf";
+        editor = "vim";
+      };
     };
   };
-};
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-    
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
+  xdg.enable = true;
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+    music = "${config.home.homeDirectory}/Media/Músicas";
+    videos = "${config.home.homeDirectory}/Media/Vídeos";
+    pictures = "${config.home.homeDirectory}/Media/Imagens";
+    templates = "${config.home.homeDirectory}/Modelos";
+    download = "${config.home.homeDirectory}/Downloads";
+    documents = "${config.home.homeDirectory}/Documentos";
+    desktop = null;
+    publicShare = null;
   };
+  xdg.mime.enable = true;
+  xdg.mimeApps.enable = true;
 
   home.sessionVariables = {
     EDITOR = userSettings.editor;
