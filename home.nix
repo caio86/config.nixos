@@ -38,6 +38,8 @@ in
     fd
     bat
     eza
+    discord
+    whatsapp-for-linux
   ];
 
   # programs.neovim = {
@@ -69,7 +71,7 @@ in
 
 programs.git = {
   enable = true;
-  userName = userSettings.username;
+  userName = "caio86";
   userEmail = userSettings.email;
   extraConfig = {
     init.defaultBranch = "main";
