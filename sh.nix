@@ -4,10 +4,10 @@ let
   myAliases = {
     c = "clear";
     # vim = "nvim";
-    ls = "eza --icons -l -T -L=1";
+    ls = "eza --icons -hl -T -L=1 --sort=type";
     ll = "eza -lh";
-    lsa = "eza -lah";
-    l = "eza -lah";
+    # lsa = "eza -lah";
+    l = "eza -lAh";
     rg = "rg --smart-case";
     cat = "bat -p";
     fzfd = ''
