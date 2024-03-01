@@ -17,13 +17,13 @@
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
-    ripgrep
     fzf
-    fd
     bat
     eza
     pass
     wl-clipboard
+    nerdfonts
+    nodePackages.npm
     discord
     whatsapp-for-linux
     brave
@@ -32,6 +32,12 @@
   programs.neovim = {
   enable = true;
     vimAlias = true;
+    extraPackages = with pkgs; [
+      ripgrep
+      fd
+      unzip
+      tree-sitter
+    ];
     plugins = with pkgs.vimPlugins; [
       lazy-nvim
       LazyVim
