@@ -22,11 +22,6 @@
     eza
     pass
     wl-clipboard
-    nerdfonts
-    nodePackages.npm
-    discord
-    whatsapp-for-linux
-    brave
   ];
 
   programs.neovim = {
@@ -37,10 +32,6 @@
       fd
       unzip
       tree-sitter
-    ];
-    plugins = with pkgs.vimPlugins; [
-      lazy-nvim
-      LazyVim
     ];
   };
   
