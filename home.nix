@@ -12,6 +12,7 @@
   imports = [
     ./sh.nix
     ./git.nix
+    ./neovim.nix
   ];
 
   home.stateVersion = "23.11"; # Please read the comment before changing.
@@ -24,17 +25,6 @@
     wl-clipboard
   ];
 
-  programs.neovim = {
-  enable = true;
-    vimAlias = true;
-    extraPackages = with pkgs; [
-      ripgrep
-      fd
-      unzip
-      tree-sitter
-    ];
-  };
-  
   xdg.enable = true;
   xdg.userDirs = {
     enable = true;
