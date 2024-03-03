@@ -10,6 +10,8 @@ let
     l = "eza -lAh";
     rg = "rg --smart-case";
     cat = "bat -p";
+    duh = "sudo du -h --one-file-system --max-depth=1 --threshold=100k";
+    dfh = "df -h -x tmpfs -x devtmpfs";
     fzfd = ''
       escolhido=$(fd -t d | fzf)
       if [ -z "$escolhido" ]; then
