@@ -22,8 +22,20 @@
     bat
     eza
     pass
-    wl-clipboard
+    kitty
+    kitty-themes
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
+
+  programs.kitty = {
+    enable = true;
+    font = {
+      name = "JetBrainsMono Nerd Font";
+      size = 10;
+    };
+    shellIntegration.enableZshIntegration = true;
+    theme = "Catppuccin-Mocha";
+  };
 
   xdg.enable = true;
   xdg.userDirs = {

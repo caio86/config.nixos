@@ -15,7 +15,6 @@
     tree-sitter
 
     xclip
-    wl-clipboard
   ];
 
   home.file.".config/nvim".source = pkgs.fetchFromGitHub {
