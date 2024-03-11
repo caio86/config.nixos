@@ -2,13 +2,25 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ pkgs, systemSettings, userSettings, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
+
+  # Experimental features
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  # Ensure nix flakes are enabled
+  nix.package = pkgs.nixFlakes;
+  nix.extraOptions = ''
+    experimental-features = nix-command flakes
+  '';
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
 
   # Bootloader.
   boot.loader.grub.enable = true;
@@ -18,32 +30,26 @@
   boot.loader.grub.configurationLimit = 3;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+
+  # Networking
+  networking.hostName = systemSettings.hostname; # Define your hostname.
+  networking.networkmanager.enable = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-
   # Set your time zone.
-  time.timeZone = "America/Fortaleza";
-
+  time.timeZone = systemSettings.timezone;
   # Select internationalisation properties.
-  i18n.defaultLocale = "pt_BR.UTF-8";
-
+  i18n.defaultLocale = systemSettings.locale;
   i18n.extraLocaleSettings = {
-    LC_ADDRESS = "pt_BR.UTF-8";
-    LC_IDENTIFICATION = "pt_BR.UTF-8";
-    LC_MEASUREMENT = "pt_BR.UTF-8";
-    LC_MONETARY = "pt_BR.UTF-8";
-    LC_NAME = "pt_BR.UTF-8";
-    LC_NUMERIC = "pt_BR.UTF-8";
-    LC_PAPER = "pt_BR.UTF-8";
-    LC_TELEPHONE = "pt_BR.UTF-8";
-    LC_TIME = "pt_BR.UTF-8";
+    LC_ADDRESS = systemSettings.locale;
+    LC_IDENTIFICATION = systemSettings.locale;
+    LC_MEASUREMENT = systemSettings.locale;
+    LC_MONETARY = systemSettings.locale;
+    LC_NAME = systemSettings.locale;
+    LC_NUMERIC = systemSettings.locale;
+    LC_PAPER = systemSettings.locale;
+    LC_TELEPHONE = systemSettings.locale;
+    LC_TIME = systemSettings.locale;
   };
 
   # Enable the X11 windowing system.
@@ -60,7 +66,7 @@
   };
 
   # Configure console keymap
-  console.keyMap = "br-abnt2";
+  # console.keyMap = "br-abnt2";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -86,18 +92,13 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.caiol = {
+  users.users.${userSettings.username}= {
     isNormalUser = true;
-    description = "Caio Luiz";
+    description = userSettings.name;
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      firefox
-    #  thunderbird
-    ];
+    packages = with pkgs; [];
+    uid = 1000;
   };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -108,6 +109,7 @@
     git
     pinentry-curses
     steam
+    home-manager
   ];
 
   hardware.opengl.driSupport32Bit = true;
@@ -159,7 +161,5 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 }
