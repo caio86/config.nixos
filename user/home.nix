@@ -10,8 +10,8 @@
   programs.home-manager.enable = true;
 
   imports = [
-    ./app/git.nix
-    ./app/neovim.nix
+    ./app/git/git.nix
+    ./app/neovim/neovim.nix
     ./shell/sh.nix
   ];
 
