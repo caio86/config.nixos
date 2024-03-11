@@ -46,7 +46,9 @@
     nixosConfigurations = {
       system = lib.nixosSystem {
         system = systemSettings.system;
-        modules = [ ./system/wsl.nix ];
+        modules = [ 
+          (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix")
+        ]; # load configuration.nix from selected PROFILE
         specialArgs = {
           inherit systemSettings;
           inherit userSettings;
@@ -58,7 +60,9 @@
     homeConfigurations = {
       user = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ ./user/home.nix ];
+        modules = [
+          (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix")
+        ]; # load home.nix from selected PROFILE
         extraSpecialArgs = {
           inherit systemSettings;
           inherit userSettings;
