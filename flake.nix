@@ -6,9 +6,11 @@
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixos-wsl.url = "github:nix-community/nixos-wsl";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, ... }:
 
   let
     # --- SYSTEM SETTINGS --- #
@@ -48,6 +50,7 @@
         specialArgs = {
           inherit systemSettings;
           inherit userSettings;
+	  inherit (inputs) nixos-wsl;
         };
       };
     };
