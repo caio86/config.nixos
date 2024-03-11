@@ -9,10 +9,9 @@
   };
 
   home.packages = with pkgs; [
-    ripgrep
-    fd
+    ripgrep fd
     unzip
-    tree-sitter
+    tree-sitter gcc
 
     xclip
   ];
