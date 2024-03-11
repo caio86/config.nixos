@@ -46,7 +46,7 @@
     nixosConfigurations = {
       system = lib.nixosSystem {
         system = systemSettings.system;
-        modules = [ ./system/configuration.nix ];
+        modules = [ ./system/wsl.nix ];
         specialArgs = {
           inherit systemSettings;
           inherit userSettings;
