@@ -10,9 +10,9 @@
   programs.home-manager.enable = true;
 
   imports = [
-    ./sh.nix
-    ./git.nix
-    ./neovim.nix
+    ./app/git.nix
+    ./app/neovim.nix
+    ./shell/sh.nix
   ];
 
   home.stateVersion = "23.11"; # Please read the comment before changing.

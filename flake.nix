@@ -23,7 +23,7 @@
     # --- USER SETTINGS --- #
     userSettings = {
       username = "caiol";
-      name = "Caio";
+      name = "Caio Luiz";
       email = "caioluiz86@gmail.com";
       editor = "nvim";
     };
@@ -44,7 +44,7 @@
     nixosConfigurations = {
       system = lib.nixosSystem {
         system = systemSettings.system;
-        modules = [ ./configuration.nix ];
+        modules = [ ./system/configuration.nix ];
         specialArgs = {
           inherit systemSettings;
           inherit userSettings;
@@ -55,7 +55,7 @@
     homeConfigurations = {
       user = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ ./home.nix ];
+        modules = [ ./user/home.nix ];
         extraSpecialArgs = {
           inherit systemSettings;
           inherit userSettings;
