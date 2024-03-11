@@ -28,7 +28,7 @@ let
 in
 
 {
-  programs.starship.enable = false;
+  programs.starship.enable = true;
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
