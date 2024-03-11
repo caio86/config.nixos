@@ -54,15 +54,6 @@
     uid = 1000;
   };
 
-  # User account
-  users.users.nixos = {
-    isNormalUser = true;
-    description = userSettings.name;
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
-    uid = lib.mkForce 1001;
-  };
-
   # System packages
   environment.systemPackages = with pkgs; [
     vim
