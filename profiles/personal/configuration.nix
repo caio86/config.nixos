@@ -20,6 +20,8 @@
     experimental-features = nix-command flakes
   '';
 
+  services.flatpak.enable = true;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
