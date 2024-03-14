@@ -41,7 +41,7 @@ in
       plugins = [
        "git"
        "git-auto-fetch"
-       # "command-not-found"
+       "command-not-found"
        "sudo"
        "aliases"
       ];
