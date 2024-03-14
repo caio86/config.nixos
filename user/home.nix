@@ -22,6 +22,7 @@
     bat
     eza
     pass
+    wl-copy
     kitty
     kitty-themes
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
