@@ -6,17 +6,17 @@ input="./backups"
 
 pattern="'(.*?)'"
 
-echo $(awk -F "'" '/Existing/ {print $2}' < $input)
+result=($(awk -F "'" '/Existing/ {print $2}' < $input))
 
-# while IFS= read -r line; do
-#   # mv $HOME/$line.backups $HOME/$line
-#   result= $(echo $line | awk -F "'" '/Existing/ {print $2}')
-#   if [[ $result == " " ]]; then
-#     echo "tem"
-#   else
-#     echo "Não tem"
-#   fi
-#   # echo "Output: {$result}"
-#   # echo "mv $HOME/$line.backups $HOME/$line"
-# done < $input
+echo "Restaurando backups"
+echo
+
+echo "Serão restaurados ${#result[@]} aquivos"
+echo
+
+for file in ${result[@]}; do
+  echo "Restaurando arquivo '${file}'"
+  mv $file.backup $file
+  echo
+done
 
