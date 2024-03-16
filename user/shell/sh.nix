@@ -3,6 +3,7 @@
 let
   myAliases = {
     c = "clear";
+    py = "python3";
     ls = "eza --icons -hl -T -L=1 --sort=type";
     lsa = "eza --icons -hlA -T -L=1 --sort=type";
     l = "eza -h --sort=type";
