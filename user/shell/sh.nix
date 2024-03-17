@@ -12,7 +12,6 @@ let
     rg = "rg --smart-case";
     cat = "bat -p";
     gitfetch = "onefetch";
-    lazyvim = "NVIM_APPNAME=lazyvim nvim";
     duh = "sudo du -h --one-file-system --max-depth=1 --threshold=100k";
     dfh = "df -h -x tmpfs -x devtmpfs";
     fzfd = ''
