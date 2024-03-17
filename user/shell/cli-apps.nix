@@ -9,9 +9,11 @@
     cava # Visualize audio in terminal
     killall # kill process by name
     bat eza fd bottom ripgrep
+    tree tldr
     zip unzip
-    tmux
-    w3m
-    vim neovim
+    ranger # file manager
+    tmux # terminal multiplexer
+    w3m # Text pased web browser
+    vim
   ];
 }
