@@ -13,6 +13,7 @@
     ../../user/app/git/git.nix
     ../../user/app/neovim/neovim.nix
     ../../user/shell/sh.nix
+    ../../user/shell/cli-apps.nix
   ];
 
   home.stateVersion = "23.11"; # Please read the comment before changing.
