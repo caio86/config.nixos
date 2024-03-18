@@ -12,6 +12,7 @@
   imports = [
     ../../user/app/git/git.nix
     ../../user/app/neovim/neovim.nix
+    ../../user/app/tmux/tmux.nix
     ../../user/shell/sh.nix
     ../../user/shell/cli-apps.nix
   ];
