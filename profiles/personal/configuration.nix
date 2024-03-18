@@ -9,7 +9,7 @@
     [ # Include the results of the hardware scan.
       ../../system/hardware-configuration.nix
       ../../system/hardware/openrgb.nix
-      ../../system/app/docker/docker.nix
+      ../../system/app/docker.nix
       ../../system/security/gpg.nix
     ];
 
