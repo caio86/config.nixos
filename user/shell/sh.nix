@@ -29,6 +29,7 @@ in
 
 {
   programs.starship.enable = true;
+  programs.starship.enableBashIntegration = false;
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
