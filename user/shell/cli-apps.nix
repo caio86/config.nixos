@@ -12,7 +12,6 @@
     tree tldr
     zip unzip
     ranger # file manager
-    tmux # terminal multiplexer
     w3m # Text pased web browser
     vim
   ];
