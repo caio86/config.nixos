@@ -10,6 +10,8 @@
       ../../system/hardware-configuration.nix
       ../../system/hardware/openrgb.nix
       ../../system/app/docker.nix
+      ../../system/app/gamemode.nix
+      ../../system/app/steam.nix
       ../../system/security/gpg.nix
     ];
 
@@ -105,19 +107,13 @@
     uid = 1000;
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     wget
     zsh
     git
-    steam
     home-manager
   ];
-
-  hardware.opengl.driSupport32Bit = true;
-  programs.steam.enable = true;
 
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;
