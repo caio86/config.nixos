@@ -26,7 +26,7 @@
     eza
     pass
     wl-clipboard
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    (nerdfonts.override { fonts = [ "JetBrainsMono" "IntelOneMono" ]; })
   ];
 
   xdg.enable = true;
