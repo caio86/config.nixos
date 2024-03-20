@@ -10,6 +10,7 @@
       ../../system/hardware-configuration.nix
       ../../system/hardware/openrgb.nix
       ../../system/app/docker.nix
+      ../../system/app/wireshark.nix
       ../../system/app/gamemode.nix
       ../../system/app/steam.nix
       ../../system/security/gpg.nix
