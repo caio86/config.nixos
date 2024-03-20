@@ -11,6 +11,7 @@ let
     ll = "eza -lh --sort=type";
     rg = "rg --smart-case";
     cat = "bat -p";
+    open = "xdg-open";
     gitfetch = "onefetch";
     duh = "sudo du -h --one-file-system --max-depth=1 --threshold=100k";
     dfh = "df -h -x tmpfs -x devtmpfs";
