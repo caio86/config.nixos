@@ -9,9 +9,11 @@
   };
 
   home.packages = with pkgs; [
-    ripgrep fd
+    ripgrep
+    fd
     unzip
-    tree-sitter gcc
+    tree-sitter
+    gcc
 
     xclip
   ];
@@ -19,7 +21,7 @@
   home.file.".config/nvim".source = pkgs.fetchFromGitHub {
     owner = "caio86";
     repo = "init.lua";
-    rev = "7ec0079e572427024c1d81f13e08cd43bcc66075";
-    hash = "sha256-FCEqMzeIABXiq4C1DyrnujCF6cietJa+KZxGxqax/lA=";
+    rev = "940f4def7a7343b4ec642f2599311a721e9db0e8";
+    hash = "sha256-D6iV8UjNls8twLZyPhmcoJ/EJkTznL7a+wHyxXvUfsQ=";
   };
 }
