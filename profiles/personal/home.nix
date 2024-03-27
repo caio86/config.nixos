@@ -16,6 +16,7 @@
     ../../user/app/tmux/tmux.nix
     ../../user/shell/sh.nix
     ../../user/shell/cli-apps.nix
+    ../../user/wm/hyprland/hyprland.nix
   ];
 
   home.stateVersion = "23.11"; # Please read the comment before changing.
