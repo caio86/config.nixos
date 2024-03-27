@@ -29,6 +29,12 @@
     (nerdfonts.override { fonts = [ "JetBrainsMono" "IntelOneMono" ]; })
   ];
 
+  home.pointerCursor = {
+    name = "Bibata-Modern-Ice";
+    package = pkgs.bibata-cursors;
+    size = 24;
+  };
+
   xdg.enable = true;
   xdg.userDirs = {
     enable = true;
