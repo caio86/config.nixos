@@ -30,6 +30,8 @@
         username = "caiol";
         name = "Caio Luiz";
         email = "caioluiz86@gmail.com";
+        browser = "brave";
+        term = "kitty";
         editor = "nvim";
       };
 

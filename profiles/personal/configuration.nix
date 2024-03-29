@@ -71,7 +71,10 @@
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
+    portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
+
+  security.pam.services.swaylock = { };
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -94,6 +97,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    wireplumber.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
 
