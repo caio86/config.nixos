@@ -15,6 +15,7 @@
       ../../system/app/gamemode.nix
       ../../system/app/steam.nix
       ../../system/security/gpg.nix
+      ../../system/security/automount.nix
       ../../system/style/stylix.nix
     ];
 
