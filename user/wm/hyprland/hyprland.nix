@@ -70,6 +70,8 @@
         "swww init"
         "wl-paste --watch cliphist store"
         "waybar"
+        "discord --start-minimized"
+        "steam -silent"
       ];
 
       # --------------------------------------#
@@ -245,6 +247,8 @@
 
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
+
+        "$mainMod CTRL, down, workspace, empty"
 
         # Special Workspace
         "$mainMod, S, togglespecialworkspace, magic"
