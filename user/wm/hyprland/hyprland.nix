@@ -68,6 +68,7 @@
         "dunst"
         "hypridle"
         "swww init"
+        "wl-paste --watch cliphist store"
         "waybar"
       ];
 
