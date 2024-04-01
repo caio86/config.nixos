@@ -31,6 +31,7 @@
     dunst
     wlogout
     pkgs-stable.waybar
+    smile
   ];
 
   wayland.windowManager.hyprland = {
@@ -177,6 +178,7 @@
       "$mainMod" = "SUPER";
 
       bind = [
+        "$mainMod, period, exec, smile"
         "$mainMod, Q, exec, $terminal"
         "$mainMod, C, killactive"
         "$mainMod, M, exit"
