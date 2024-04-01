@@ -61,9 +61,9 @@
       # --------------------------------------#
 
       "$terminal" = "${userSettings.term}";
-      "$fileManager" = "dolphin";
+      "$fileManager" = "nautilus";
       "$browser" = "${userSettings.browser}";
-      "$menu" = "wofi --show drun";
+      "$menu" = "wofi -i --show drun";
 
       env = "QT_QPA_PLATFORM,wayland";
 
