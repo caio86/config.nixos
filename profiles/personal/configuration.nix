@@ -131,6 +131,19 @@
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
 
+  fonts.packages = with pkgs; [
+    # Fonts
+    (nerdfonts.override { fonts = [ "Inconsolata" ]; })
+    powerline
+    inconsolata
+    inconsolata-nerdfont
+    iosevka
+    font-awesome
+    ubuntu_font_family
+    terminus_font
+  ];
+
+
   fonts.fontDir.enable = true;
 
   xdg.portal = {
