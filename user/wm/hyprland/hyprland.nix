@@ -32,6 +32,20 @@
     wlogout
     pkgs-stable.waybar
     smile
+    cliphist
+    (pkgs.writeShellScriptBin "clip-history" ''
+      case $1 in
+        d) cliphist list | wofi -S dmenu | cliphist delete
+          ;;
+          
+        w) if [ `echo -e "Clear\nCancel" | wofi -S dmenu` == "Clear" ] ; then
+            cliphist wipe
+          fi
+          ;;
+
+        *) cliphist list | wofi -S dmenu | cliphist decode | wl-copy
+      esac
+    '')
   ];
 
   wayland.windowManager.hyprland = {
@@ -193,6 +207,8 @@
         "$mainMod, B, exec, $browser"
         "$mainMod, L, exec, hyprlock"
         "$mainMod, DELETE, exec, wlogout"
+        "$mainMod, V, exec, clip-history"
+        "$mainMod CTRL, V, exec, clip-history w"
 
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"
