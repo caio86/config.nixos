@@ -219,6 +219,13 @@
         "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
       ];
+
+      windowrulev2 = [
+        "suppressevent maximize, class:.*"
+        "tile,class:^(Brave-browser)$"
+        "float,class:^(pavucontrol)$"
+        "float,class:^(PacketTracer)$, title:^(?!(Cisco Packet Tracer)$).*$"
+      ];
     };
   };
 }
