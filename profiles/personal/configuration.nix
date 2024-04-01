@@ -14,6 +14,7 @@
       ../../system/app/wireshark.nix
       ../../system/app/gamemode.nix
       ../../system/app/steam.nix
+      ../../system/app/virtualization.nix
       ../../system/security/gpg.nix
       ../../system/security/automount.nix
       ../../system/style/stylix.nix
