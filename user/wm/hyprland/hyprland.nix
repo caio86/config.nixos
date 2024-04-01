@@ -221,6 +221,5 @@
       ];
     };
   };
-  programs.swaylock.enable = true;
 }
 
