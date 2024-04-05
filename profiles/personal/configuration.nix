@@ -82,7 +82,6 @@
     zsh
     git
     home-manager
-    mangohud
   ];
 
   environment.shells = with pkgs; [ zsh ];
