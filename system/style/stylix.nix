@@ -16,7 +16,7 @@ in
   stylix.image = backgroundImage;
   stylix.base16Scheme = ./. + themePath;
 
-  stylix.targets.grub.enable = true;
+  # stylix.targets.grub.enable = true;
 
   stylix.targets.console.enable = true;
 }
