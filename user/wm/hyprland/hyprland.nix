@@ -83,7 +83,10 @@
       "$browser" = "${userSettings.browser}";
       "$menu" = "wofi -i --show drun";
 
-      env = "QT_QPA_PLATFORM,wayland";
+      env = [
+        "bitdepth,10"
+        "QT_QPA_PLATFORM,wayland"
+      ];
 
       # --------------------------------------#
       # Keyboard                              #
@@ -212,6 +215,8 @@
         "$mainMod, DELETE, exec, wlogout"
         "$mainMod, V, exec, clip-history"
         "$mainMod CTRL, V, exec, clip-history w"
+        "$mainMod CTRL, minus, exec, hyprctl keyword misc:cursor_zoom_factor 1"
+        "$mainMod CTRL, equal, exec, hyprctl keyword misc:cursor_zoom_factor 1.5"
 
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"
