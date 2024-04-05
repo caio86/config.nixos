@@ -277,6 +277,12 @@
         "tile,class:^(Brave-browser)$"
         "float,class:^(pavucontrol)$"
         "float,class:^(PacketTracer)$, title:^(?!(Cisco Packet Tracer)$).*$"
+
+        # Calculator
+        "float,class:^(org.gnome.Calculator)$"
+        "size 22% 46%,class:^(org.gnome.Calculator)$"
+        "move 39% 27%,class:^(org.gnome.Calculator)$"
+
       ];
     };
   };
