@@ -19,6 +19,7 @@
     cursorTheme = {
       name = "Bibata-Modern-Ice";
       package = pkgs.bibata-cursors;
+      size = 24;
     };
   };
 
@@ -217,6 +218,12 @@
         "$mainMod CTRL, V, exec, clip-history w"
         "$mainMod CTRL, minus, exec, hyprctl keyword misc:cursor_zoom_factor 1"
         "$mainMod CTRL, equal, exec, hyprctl keyword misc:cursor_zoom_factor 1.5"
+
+        # Screenshots
+        "ALT SHIFT, S, exec, ${pkgs.sway-contrib.grimshot}/bin/grimshot copy area"
+        "ALT, S, exec, ${pkgs.sway-contrib.grimshot}/bin/grimshot copy active"
+        "CTRL SHIFT, S, exec, ${pkgs.sway-contrib.grimshot}/bin/grimshot save area"
+        "CTRL, S, exec, ${pkgs.sway-contrib.grimshot}/bin/grimshot save active"
 
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"
