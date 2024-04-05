@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, systemSettings, userSettings, ... }:
+{ pkgs, systemSettings, userSettings, ... }:
 
 {
   imports =
@@ -36,29 +36,37 @@
   nixpkgs.config.allowUnfree = true;
 
   # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "nodev";
-  boot.loader.grub.useOSProber = true;
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.configurationLimit = 3;
-  boot.loader.grub.theme = pkgs.stdenv.mkDerivation rec {
-    pname = "catppuccin-grub-theme";
-    version = "88f6124757331fd3a37c8a69473021389b7663ad";
-
-    src = pkgs.fetchFromGitHub {
-      owner = "catppuccin";
-      repo = "grub";
-      rev = "${version}";
-      hash = "sha256-e8XFWebd/GyX44WQI06Cx6sOduCZc5z7/YhweVQGMGY=";
+  boot.supportedFilesystems = [ "ntfs" ];
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot";
     };
+    grub = {
+      enable = true;
+      device = "nodev";
+      efiSupport = true;
+      useOSProber = true;
+      configurationLimit = 8;
+      theme = pkgs.stdenv.mkDerivation rec {
+        pname = "catppuccin-grub-theme";
+        version = "88f6124757331fd3a37c8a69473021389b7663ad";
 
-    installPhase = ''
-      mkdir -p $out
-      cp -r ./src/catppuccin-mocha-grub-theme/* $out
-    '';
+        src = pkgs.fetchFromGitHub {
+          owner = "catppuccin";
+          repo = "grub";
+          rev = "${version}";
+          hash = "sha256-e8XFWebd/GyX44WQI06Cx6sOduCZc5z7/YhweVQGMGY=";
+        };
+
+        installPhase = ''
+          mkdir -p $out
+          cp -r ./src/catppuccin-mocha-grub-theme/* $out
+        '';
+      };
+    };
   };
 
-  boot.loader.efi.canTouchEfiVariables = true;
 
   # Networking
   networking.hostName = systemSettings.hostname; # Define your hostname.
