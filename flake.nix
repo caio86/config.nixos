@@ -13,7 +13,7 @@
     stylix.url = "github:danth/stylix";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-stable, home-manager, stylix, ... }:
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, ... }@inputs:
 
     let
       # --- SYSTEM SETTINGS --- #
@@ -81,6 +81,7 @@
             inherit pkgs-stable;
             inherit systemSettings;
             inherit userSettings;
+            inherit (inputs) stylix;
           };
         };
       };

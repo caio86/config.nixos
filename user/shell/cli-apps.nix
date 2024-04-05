@@ -20,6 +20,7 @@
     unzip
     ranger # file manager
     w3m # Text pased web browser
+    jq
     vim
   ];
 }
