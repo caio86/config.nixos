@@ -17,6 +17,7 @@
       ../../system/app/virtualization.nix
       ../../system/security/gpg.nix
       ../../system/security/automount.nix
+      ../../system/wm/hyprland.nix
       ../../system/style/stylix.nix
     ];
 
@@ -42,7 +43,6 @@
   boot.loader.grub.configurationLimit = 3;
   boot.loader.efi.canTouchEfiVariables = true;
 
-
   # Networking
   networking.hostName = systemSettings.hostname; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -64,55 +64,8 @@
     LC_TIME = systemSettings.locale;
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the KDE Desktop Environment.
-  services.xserver.displayManager.sddm = {
-    enable = true;
-    theme = "chili";
-  };
-  # services.xserver.desktopManager.plasma6.enable = true;
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-    portalPackage = pkgs.xdg-desktop-portal-hyprland;
-  };
-
-  security.pam.services.swaylock = { };
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "br";
-    variant = "";
-  };
-
-  # Configure console keymap
-  # console.keyMap = "br-abnt2";
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    wireplumber.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${userSettings.username} = {
@@ -129,35 +82,12 @@
     zsh
     git
     home-manager
-    (sddm-chili-theme.override {
-      themeConfig = {
-        background = config.stylix.image;
-      };
-    })
-    (where-is-my-sddm-theme.override {
-      themeConfig.General = {
-        background = config.stylix.image;
-      };
-    })
     mangohud
   ];
 
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
-
-  fonts.packages = with pkgs; [
-    # Fonts
-    (nerdfonts.override { fonts = [ "Inconsolata" ]; })
-    powerline
-    inconsolata
-    inconsolata-nerdfont
-    iosevka
-    font-awesome
-    ubuntu_font_family
-    terminus_font
-  ];
-
 
   fonts.fontDir.enable = true;
 
