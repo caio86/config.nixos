@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, systemSettings, userSettings, ... }:
+{ config, pkgs, systemSettings, userSettings, ... }:
 
 {
   imports =
@@ -68,8 +68,10 @@
   services.xserver.enable = true;
 
   # Enable the KDE Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma6.enable = true;
+  services.xserver.displayManager.sddm = {
+    enable = true;
+    theme = "chili";
+  };
   # services.xserver.desktopManager.plasma6.enable = true;
   programs.hyprland = {
     enable = true;
@@ -127,6 +129,17 @@
     zsh
     git
     home-manager
+    (sddm-chili-theme.override {
+      themeConfig = {
+        background = config.stylix.image;
+      };
+    })
+    (where-is-my-sddm-theme.override {
+      themeConfig.General = {
+        background = config.stylix.image;
+      };
+    })
+    mangohud
   ];
 
   environment.shells = with pkgs; [ zsh ];
