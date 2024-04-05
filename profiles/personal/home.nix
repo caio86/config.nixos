@@ -22,12 +22,12 @@
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
+    gnome.nautilus
     fzf
     bat
     eza
     pass
     wl-clipboard
-    (nerdfonts.override { fonts = [ "JetBrainsMono" "IntelOneMono" ]; })
   ];
 
   xdg.enable = true;
