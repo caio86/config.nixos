@@ -200,8 +200,9 @@
 
       bind = [
         "$mainMod, period, exec, smile"
-        "$mainMod, Q, exec, $terminal"
+        "$mainMod, Return, exec, $terminal"
         "$mainMod, C, killactive"
+        "$mainMod, D, exec, brave --app=https://excalidraw.com/"
         "$mainMod, M, exit"
         "$mainMod, E, exec, $fileManager"
         "$mainMod, T, toggleFloating,"
@@ -222,8 +223,6 @@
         # Screenshots
         "ALT SHIFT, S, exec, ${pkgs.sway-contrib.grimshot}/bin/grimshot copy area"
         "ALT, S, exec, ${pkgs.sway-contrib.grimshot}/bin/grimshot copy active"
-        "CTRL SHIFT, S, exec, ${pkgs.sway-contrib.grimshot}/bin/grimshot save area"
-        "CTRL, S, exec, ${pkgs.sway-contrib.grimshot}/bin/grimshot save active"
 
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"
@@ -263,8 +262,10 @@
         "$mainMod CTRL, down, workspace, empty"
 
         # Special Workspace
-        "$mainMod, S, togglespecialworkspace, magic"
-        "$mainMod SHIFT, S, movetoworkspace, special:magic"
+        "$mainMod, S, togglespecialworkspace"
+        "$mainMod SHIFT, S, movetoworkspace, special"
+
+        "$mainMod CTRL, RETURN, togglespecialworkspace, coding"
       ];
 
       bindm = [
