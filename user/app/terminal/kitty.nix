@@ -1,4 +1,4 @@
-{ pkgs, lib, ...}:
+{ pkgs, lib, ... }:
 
 {
   home.packages = with pkgs; [
@@ -9,7 +9,7 @@
   programs.kitty = {
     enable = true;
     font = {
-      name = "JetBrainsMono Nerd Font";
+      name = "FiraCode Nerd Font";
       size = 10;
     };
     theme = "Catppuccin-Mocha";
