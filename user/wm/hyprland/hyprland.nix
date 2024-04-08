@@ -1,6 +1,19 @@
 { config, pkgs, pkgs-stable, userSettings, ... }:
 
 {
+  imports = [
+    ./wlogout.nix
+    ./hypridle.nix
+    ./waybar.nix
+  ];
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true;
+    name = "Bibata-Modern-Ice";
+    package = pkgs.bibata-cursors;
+    size = 24;
+  };
   gtk = {
     enable = true;
     theme = {
@@ -219,11 +232,13 @@
         "$mainMod CTRL, V, exec, clip-history w"
         "$mainMod CTRL, minus, exec, hyprctl keyword misc:cursor_zoom_factor 1"
         "$mainMod CTRL, equal, exec, hyprctl keyword misc:cursor_zoom_factor 1.5"
+        "$mainMod CTRL, R, exec, killall .waybar-wrapped && waybar & disown"
 
         # Screenshots
         "ALT SHIFT, S, exec, ${pkgs.sway-contrib.grimshot}/bin/grimshot copy area"
         "ALT, S, exec, ${pkgs.sway-contrib.grimshot}/bin/grimshot copy active"
 
+        # Change selected window
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"
         "$mainMod, up, movefocus, u"
