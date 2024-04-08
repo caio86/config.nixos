@@ -22,5 +22,7 @@
     w3m # Text pased web browser
     jq
     vim
+    lazygit
+    cava
   ];
 }
