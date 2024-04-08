@@ -107,6 +107,9 @@
     zsh
     git
     home-manager
+    wineWowPackages.stable
+    lutris
+    bottles
   ];
 
   environment.shells = with pkgs; [ zsh ];
