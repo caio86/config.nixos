@@ -84,6 +84,7 @@
         "swww init"
         "wl-paste --watch cliphist store"
         "waybar"
+        "syncthing --no-browser"
         "discord --start-minimized"
         "steam -silent"
       ];
