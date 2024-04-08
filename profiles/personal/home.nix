@@ -22,12 +22,18 @@
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
+    # File explorer
     gnome.nautilus
     fzf
     bat
     eza
     pass
     wl-clipboard
+
+    # Media
+    feh
+    mpv
+    cava
   ];
 
   xdg.enable = true;
@@ -45,6 +51,10 @@
   };
   xdg.mime.enable = true;
   xdg.mimeApps.enable = true;
+  xdg.mimeApps.defaultApplications = {
+    "image/png" = "feh.desktop";
+    "image/jpg" = "feh.desktop";
+  };
 
   home.sessionVariables = {
     EDITOR = userSettings.editor;
