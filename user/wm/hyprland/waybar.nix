@@ -141,6 +141,12 @@
           spacing = 10;
         };
 
+        "clock" = {
+          format = "{:%H:%M %a}";
+          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+          format-alt = "{:%Y-%m-%d}";
+        };
+
         "custom/system" = {
           format = "";
           tooltip = false;
