@@ -4,7 +4,7 @@
   home.file.".config/hypr/hypridle.conf".text = ''
         general {
         ignore_dbus_inhibit = false
-        before_sleep_cmd = pgrep hyprlock || hyprlock
+        before_sleep_cmd = hyprlock
     }
 
     # Screenlock
