@@ -41,11 +41,12 @@ in
       enable = true;
       theme = "robbyrussell";
       plugins = [
-       "git"
-       "git-auto-fetch"
-       "command-not-found"
-       "sudo"
-       "aliases"
+        "git"
+        "git-auto-fetch"
+        "command-not-found"
+        "sudo"
+        "aliases"
+        "kubectl"
       ];
     };
   };
@@ -57,9 +58,16 @@ in
   };
 
   home.packages = with pkgs; [
-    disfetch lolcat cowsay onefetch
-    bat eza bottom fd
-    direnv nix-direnv
+    disfetch
+    lolcat
+    cowsay
+    onefetch
+    bat
+    eza
+    bottom
+    fd
+    direnv
+    nix-direnv
   ];
 
   programs.direnv.enable = true;
