@@ -61,6 +61,14 @@
         *) cliphist list | wofi -S dmenu | cliphist decode | wl-copy
       esac
     '')
+    (pkgs.writeShellScriptBin "screenshot-ocr" ''
+      imgname="/tmp/screenshot-ocr-$(date +%Y%m%d%H%M%S).png"
+      txtname="/tmp/screenshot-ocr-$(date +%Y%m%d%H%M%S)"
+      txtfname=$txtname.txt
+      ${pkgs.sway-contrib.grimshot}/bin/grimshot save area $imgname;
+      ${pkgs.tesseract}/bin/tesseract $imgname $txtname;
+      wl-copy -n < $txtfname
+    '')
   ];
 
   wayland.windowManager.hyprland = {
@@ -240,6 +248,7 @@
         # Screenshots
         "ALT SHIFT, S, exec, ${pkgs.sway-contrib.grimshot}/bin/grimshot copy area"
         "ALT, S, exec, ${pkgs.sway-contrib.grimshot}/bin/grimshot copy active"
+        "CTRL ALT, S, exec, screenshot-ocr"
 
         # Change selected window
         "$mainMod, left, movefocus, l"
