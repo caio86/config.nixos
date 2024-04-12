@@ -56,6 +56,7 @@
   xdg.mimeApps.defaultApplications = {
     "image/png" = "feh.desktop";
     "image/jpg" = "feh.desktop";
+    "image/jpeg" = "feh.desktop";
   };
 
   home.sessionVariables = {
