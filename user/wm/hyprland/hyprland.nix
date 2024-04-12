@@ -47,6 +47,7 @@
     pkgs-stable.waybar
     smile
     cliphist
+    networkmanagerapplet
     (pkgs.writeShellScriptBin "clip-history" ''
       case $1 in
         d) cliphist list | wofi -S dmenu | cliphist delete
@@ -85,6 +86,7 @@
         "wl-paste --watch cliphist store"
         "waybar"
         "syncthing --no-browser"
+        "nm-applet --indicator"
         "discord --start-minimized"
         "steam -silent"
       ];
