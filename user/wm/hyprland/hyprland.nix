@@ -225,7 +225,8 @@
       bind = [
         "$mainMod, period, exec, smile"
         "$mainMod, Return, exec, $terminal"
-        "$mainMod, C, killactive"
+        "$mainMod, Q, killactive"
+        "$mainMod, C, exec, wl-copy $(${pkgs.hyprpicker}/bin/hyprpicker)"
         "$mainMod, D, exec, brave --app=https://excalidraw.com/"
         "$mainMod, M, exit"
         "$mainMod, E, exec, $fileManager"
