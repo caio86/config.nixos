@@ -11,6 +11,7 @@
 
   imports = [
     ../../user/app/git/git.nix
+    ../../user/app/browser/brave.nix
     ../../user/app/neovim/neovim.nix
     ../../user/app/terminal/kitty.nix
     ../../user/app/tmux/tmux.nix
