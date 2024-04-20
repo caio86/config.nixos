@@ -35,6 +35,7 @@
     feh
     mpv
     cava
+    nodePackages.live-server
   ];
 
   services.syncthing.enable = true;
