@@ -5,6 +5,9 @@
     # include NixOS-WSL modules
     # <nixos-wsl/modules>
     nixos-wsl.nixosModules.wsl
+    ../../system/app/docker.nix
+    ../../system/security/gpg.nix
+    ../../system/style/stylix.nix
   ];
 
   wsl = {
@@ -14,6 +17,13 @@
     # Enable Docker desktop integration
     # docker-desktop.enable = true;
   };
+
+  # Fix nix path
+  nix.nixPath = [
+    "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
+    "nixos-config=$HOME/dotfiles/system/configuration.nix"
+    "/nix/var/nix/profiles/per-user/root/channels"
+  ];
 
   # Experimental features
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -50,7 +60,7 @@
     isNormalUser = true;
     description = userSettings.name;
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    packages = with pkgs; [ ];
     uid = 1000;
   };
 
@@ -75,6 +85,6 @@
       xdg-desktop-portal-gtk
     ];
   };
-  
+
   system.stateVersion = "23.11"; # Did you read the comment?
 }
