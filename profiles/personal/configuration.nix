@@ -21,6 +21,13 @@
       ../../system/style/stylix.nix
     ];
 
+  # Fix nix path
+  nix.nixPath = [
+    "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
+    "nixos-config=$HOME/.dotfiles/system/configuration.nix"
+    "/nix/var/nix/profiles/per-user/root/channels"
+  ];
+
   # Experimental features
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
