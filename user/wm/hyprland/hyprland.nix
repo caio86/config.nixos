@@ -142,6 +142,7 @@
         gaps_in = 10; # 5
         gaps_out = 14; # 20
         border_size = 3; # 2
+        cursor_inactive_timeout = 15;
         "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
         "col.inactive_border" = "rgba(595959aa)";
 
