@@ -248,9 +248,9 @@
         "$mainMod CTRL, R, exec, killall .waybar-wrapped && waybar & disown"
 
         # Screenshots
-        "ALT SHIFT, S, exec, ${pkgs.sway-contrib.grimshot}/bin/grimshot copy area"
-        "ALT, S, exec, ${pkgs.sway-contrib.grimshot}/bin/grimshot copy active"
-        "CTRL ALT, S, exec, screenshot-ocr"
+        "$mainMod ALT SHIFT, S, exec, ${pkgs.sway-contrib.grimshot}/bin/grimshot copy area"
+        "$mainMod ALT, S, exec, ${pkgs.sway-contrib.grimshot}/bin/grimshot copy active"
+        "$mainMod CTRL ALT, S, exec, screenshot-ocr"
 
         # Change selected window
         "$mainMod, left, movefocus, l"
