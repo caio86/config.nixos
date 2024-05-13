@@ -1,4 +1,4 @@
-{ config, pkgs, lib, userSettings, ... }:
+{ config, pkgs, userSettings, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -12,6 +12,8 @@
   imports = [
     ../../user/app/git/git.nix
     ../../user/app/browser/brave.nix
+    ../../user/app/browser/firefox.nix
+    ../../user/app/browser/floorp.nix
     ../../user/app/neovim/neovim.nix
     ../../user/app/terminal/kitty.nix
     ../../user/app/tmux/tmux.nix
