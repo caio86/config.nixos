@@ -12,7 +12,7 @@ in
     kubectl
     kubernetes-helm
     kustomize
-    gdk
+    # gdk
   ];
 
   programs.k9s = {
