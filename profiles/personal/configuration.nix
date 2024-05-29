@@ -37,6 +37,16 @@
     experimental-features = nix-command flakes
   '';
 
+  services.openssh = {
+    enable = true;
+    openFirewall = true;
+    settings = {
+      PermitRootLogin = "no";
+    };
+  };
+  networking.firewall.enable = false;
+  services.fstrim.enable = true;
+
   services.flatpak.enable = true;
 
   # Allow unfree packages

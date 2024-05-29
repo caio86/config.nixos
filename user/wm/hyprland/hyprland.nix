@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-stable, userSettings, ... }:
+{ pkgs, pkgs-stable, userSettings, ... }:
 
 {
   imports = [
@@ -7,13 +7,6 @@
     ./waybar.nix
   ];
 
-  home.pointerCursor = {
-    gtk.enable = true;
-    x11.enable = true;
-    name = "Bibata-Modern-Ice";
-    package = pkgs.bibata-cursors;
-    size = 24;
-  };
   gtk = {
     enable = true;
     theme = {
@@ -87,7 +80,7 @@
       # --------------------------------------#
 
       exec-once = [
-        "hyprctl setcursor ${config.gtk.cursorTheme.name} ${builtins.toString config.gtk.cursorTheme.size}"
+        # "hyprctl setcursor ${config.gtk.cursorTheme.name} ${builtins.toString config.gtk.cursorTheme.size}"
         "dunst"
         "hypridle"
         "swww init"

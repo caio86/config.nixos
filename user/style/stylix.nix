@@ -9,7 +9,7 @@ let
   };
 in
 {
-  imports = [ stylix.nixosModules.stylix ];
+  imports = [ stylix.homeManagerModules.stylix ];
 
   stylix.autoEnable = false;
   stylix.polarity = "dark";
@@ -36,8 +36,4 @@ in
       name = "DejaVu Serif";
     };
   };
-
-  stylix.targets.grub.enable = false;
-
-  stylix.targets.console.enable = true;
 }
