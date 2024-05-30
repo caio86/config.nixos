@@ -22,18 +22,26 @@ in
 
   stylix.fonts = {
     monospace = {
-      package = pkgs.nerdfonts.override {
-        fonts = [ "JetBrainsMono" ];
-      };
       name = "JetBrainsMono Nerd Font Mono";
+      package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
     };
     sansSerif = {
-      package = pkgs.dejavu_fonts;
       name = "DejaVu Sans";
+      package = pkgs.dejavu_fonts;
     };
     serif = {
-      package = pkgs.dejavu_fonts;
       name = "DejaVu Serif";
+      package = pkgs.dejavu_fonts;
+    };
+    emoji = {
+      name = "Noto Color Emoji";
+      package = pkgs.noto-fonts-emoji-blob-bin;
+    };
+    sizes = {
+      terminal = 12;
+      applications = 12;
+      popups = 12;
+      desktop = 12;
     };
   };
 }
