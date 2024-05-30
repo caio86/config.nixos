@@ -8,13 +8,13 @@
 
   programs.kitty = {
     enable = true;
-    font = {
+    font = lib.mkDefault {
       name = "FiraCode Nerd Font";
       size = 10;
     };
     theme = "Catppuccin-Mocha";
     settings = {
-      background_opacity = lib.mkForce "0.75";
+      background_opacity = lib.mkDefault "0.75";
       # tab_bar_min_tabs = 1;
       tab_bar_edge = "bottom";
       tab_bar_style = "powerline";

@@ -1,4 +1,4 @@
-{ pkgs, pkgs-stable, userSettings, ... }:
+{ config, lib, pkgs, pkgs-stable, userSettings, ... }:
 
 {
   imports = [
@@ -9,7 +9,7 @@
 
   gtk = {
     enable = true;
-    theme = {
+    theme = lib.mkDefault {
       name = "Catppuccin-Mocha-Standard-Blue-Dark";
       package = pkgs.catppuccin-gtk.override {
         accents = [ "blue" ];
@@ -92,6 +92,10 @@
         "steam -silent"
       ];
 
+      exec = [
+        "swww img ${config.stylix.image}"
+      ];
+
       # --------------------------------------#
       # Variables                             #
       # --------------------------------------#
@@ -136,8 +140,8 @@
         gaps_out = 14; # 20
         border_size = 3; # 2
         cursor_inactive_timeout = 15;
-        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        "col.inactive_border" = "rgba(595959aa)";
+        "col.active_border" = lib.mkForce "0xff${config.lib.stylix.colors.base0E}";
+        "col.inactive_border" = lib.mkForce "0x33${config.lib.stylix.colors.base03}";
 
         layout = "dwindle";
       };
@@ -162,7 +166,7 @@
         drop_shadow = true;
         shadow_range = 4;
         shadow_render_power = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
+        "col.shadow" = lib.mkForce "0xee${config.lib.stylix.colors.base00}";
       };
 
       # --------------------------------------#

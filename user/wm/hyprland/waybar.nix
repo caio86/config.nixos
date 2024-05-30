@@ -1,4 +1,4 @@
-{ pkgs-stable, userSettings, ... }:
+{ config, pkgs-stable, userSettings, ... }:
 
 {
   programs.waybar = {
@@ -271,20 +271,21 @@
       };
     };
     style = ''
-      @define-color color8 #975f82;
+      @define-color color8 #${config.lib.stylix.colors.base03};
 
       @define-color backgroundlight @color8;
-      @define-color backgrounddark #FFFFFF;
+      @define-color backgrounddark #${config.lib.stylix.colors.base07};
+      @define-color waybarbackground #${config.lib.stylix.colors.base01};
       @define-color workspacesbackground1 @color8;
-      @define-color workspacesbackground2 #FFFFFF;
+      @define-color workspacesbackground2 #${config.lib.stylix.colors.base07};
       @define-color bordercolor @color8;
       @define-color textcolor1 @color8;
-      @define-color textcolor2 #FFFFFF;
-      @define-color textcolor3 #FFFFFF;
+      @define-color textcolor2 #${config.lib.stylix.colors.base05};
+      @define-color textcolor3 #${config.lib.stylix.colors.base02};
       @define-color iconcolor @color8;
 
       * {
-          font-family: "Fira Sans Semibold", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+          font-family: ${config.stylix.fonts.sansSerif.name};
           border: none;
           border-radius: 0px;
       }
@@ -699,7 +700,7 @@
       }
 
       window#waybar {
-          background-color: rgba(255,255,255,.1);
+          background-color: @waybarbackground;
       }
     '';
   };

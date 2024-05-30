@@ -11,7 +11,7 @@ in
 {
   imports = [ stylix.homeManagerModules.stylix ];
 
-  stylix.autoEnable = false;
+  stylix.autoEnable = true;
   stylix.polarity = "dark";
   stylix.image = backgroundImage;
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/${theme}.yaml";
@@ -44,4 +44,6 @@ in
       desktop = 12;
     };
   };
+
+  stylix.targets.waybar.enable = false;
 }
