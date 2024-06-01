@@ -30,6 +30,7 @@
         username = "caiol";
         name = "Caio Luiz";
         email = "caioluiz86@gmail.com";
+        theme = "catppuccin-mocha";
         browser = "brave";
         term = "kitty";
         editor = "nvim";

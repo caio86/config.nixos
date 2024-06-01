@@ -1,8 +1,6 @@
 { pkgs, stylix, userSettings, ... }:
 
-
 let
-  theme = "catppuccin-mocha";
   backgroundImage = pkgs.fetchurl {
     url = "https://w.wallhaven.cc/full/m3/wallhaven-m3gxg8.png";
     hash = "sha256-aSgwSZpIRKMdCNYbbpyY3GCb8C8B71SwsH6NYWVA41k=";
@@ -14,7 +12,7 @@ in
   stylix.autoEnable = true;
   stylix.polarity = "dark";
   stylix.image = backgroundImage;
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/${theme}.yaml";
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/${userSettings.theme}.yaml";
 
   stylix.cursor.package = pkgs.bibata-cursors;
   stylix.cursor.name = "Bibata-Modern-Ice";
