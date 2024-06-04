@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 {
   home.file.".config/wlogout/icons" = {
@@ -63,7 +63,7 @@
       }
 
       window {
-      	background: url("../../.cache/blurred_wallpaper.png");
+      	background: url("${config.stylix.blurredImage}");
       	background-size: cover;
       }
 

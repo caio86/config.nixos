@@ -1,11 +1,5 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
-let
-  inputImage = config.stylix.image;
-  outputImage = pkgs.runCommand "blurred.png" { } ''
-    ${pkgs.imagemagick}/bin/magick ${inputImage} -resize 75% -blur 50x30 $out
-  '';
-in
 {
   home.file.".config/hypr/hypridle.conf".text = ''
         general {
@@ -42,7 +36,7 @@ in
   home.file.".config/hypr/hyprlock.conf".text = ''
         background {
         monitor =
-        path = ${outputImage}   # only png supported for now
+        path = ${config.stylix.blurredImage}   # only png supported for now
     }
 
     input-field {
