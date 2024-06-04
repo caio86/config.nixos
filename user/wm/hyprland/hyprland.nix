@@ -1,4 +1,4 @@
-{ config, lib, pkgs, pkgs-stable, userSettings, ... }:
+{ config, lib, pkgs, userSettings, ... }:
 
 {
   imports = [
@@ -37,7 +37,7 @@
     wofi
     dunst
     wlogout
-    pkgs-stable.waybar
+    waybar
     smile
     cliphist
     networkmanagerapplet

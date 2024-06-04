@@ -1,8 +1,8 @@
-{ config, pkgs-stable, userSettings, ... }:
+{ config, pkgs, userSettings, ... }:
 
 {
   programs.waybar = {
-    package = pkgs-stable.waybar;
+    package = pkgs.waybar;
     enable = true;
     settings = {
       mainBar = {
