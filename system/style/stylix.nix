@@ -39,5 +39,5 @@ in
 
   stylix.targets.grub.enable = false;
 
-  stylix.targets.console.enable = true;
+  stylix.targets.console.enable = false;
 }
