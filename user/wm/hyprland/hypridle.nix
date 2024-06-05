@@ -1,10 +1,10 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   home.file.".config/hypr/hypridle.conf".text = ''
-        general {
+    general {
         ignore_dbus_inhibit = false
-        before_sleep_cmd = hyprlock
+        before_sleep_cmd = ${pkgs.procps}/bin/pkill hyprlock; hyprlock
     }
 
     # Screenlock
@@ -12,7 +12,7 @@
         # HYPRLOCK TIMEOUT
         timeout = 360
         # HYPRLOCK ONTIMEOUT
-        on-timeout = hyprlock
+        on-timeout = ${pkgs.procps}/bin/pkill hyprlock; hyprlock
     }
 
     # dpms
