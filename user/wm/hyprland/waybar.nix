@@ -142,8 +142,8 @@
         };
 
         "clock" = {
-          format = "{:%H:%M %a}";
-          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+          format = "{:L%H:%M %a}";
+          tooltip-format = "<big>{:L%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
           format-alt = "{:%Y-%m-%d}";
         };
 
