@@ -26,5 +26,6 @@
     cava
     (pkgs.callPackage ../pkgs/tmux-sessionizer.nix { })
     (pkgs.callPackage ../pkgs/tmux-navigator.nix { })
+    (pkgs.callPackage ../pkgs/tmux-cht.sh.nix { })
   ];
 }
