@@ -39,6 +39,7 @@ in
     shellAliases = myAliases;
     initExtra = ''
       bindkey -s '^f' 'tmux-sessionizer\n'
+      bindkey -s '^t' 'tmux-navigator\n'
     '';
     oh-my-zsh = {
       enable = true;
