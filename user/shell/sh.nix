@@ -37,6 +37,9 @@ in
     enableCompletion = true;
     syntaxHighlighting.enable = true;
     shellAliases = myAliases;
+    initExtra = ''
+      bindkey -s '^f' 'tmux-sessionizer\n'
+    '';
     oh-my-zsh = {
       enable = true;
       theme = "robbyrussell";

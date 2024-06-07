@@ -24,5 +24,6 @@
     vim
     lazygit
     cava
+    (pkgs.callPackage ../pkgs/tmux-sessionizer.nix { })
   ];
 }
