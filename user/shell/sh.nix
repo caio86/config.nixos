@@ -40,6 +40,7 @@ in
     initExtra = ''
       bindkey -s '^f' 'tmux-sessionizer\n'
       bindkey -s '^t' 'tmux-navigator\n'
+      bindkey -s '^[w' 'tmux-windowizer '
     '';
     oh-my-zsh = {
       enable = true;
