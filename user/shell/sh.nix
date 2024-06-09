@@ -15,6 +15,7 @@ let
     gitfetch = "onefetch";
     duh = "sudo du -h --one-file-system --max-depth=1 --threshold=100k";
     dfh = "df -h -x tmpfs -x devtmpfs";
+    dc = "docker compose";
     fzfd = ''
       escolhido=$(fd -t d | fzf)
       if [ -z "$escolhido" ]; then
