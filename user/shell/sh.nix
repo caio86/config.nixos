@@ -78,4 +78,9 @@ in
   programs.direnv.enable = true;
   programs.direnv.enableZshIntegration = true;
   programs.direnv.nix-direnv.enable = true;
+  programs.direnv.config = {
+    global = {
+      hide_env_diff = true;
+    };
+  };
 }
