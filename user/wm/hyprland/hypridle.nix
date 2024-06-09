@@ -3,8 +3,9 @@
 {
   home.file.".config/hypr/hypridle.conf".text = ''
     general {
-        ignore_dbus_inhibit = false
-        before_sleep_cmd = ${pkgs.procps}/bin/pkill hyprlock; hyprlock
+      lock_cmd = pidof hyprlock || hyprlock
+      before_sleep_cmd = loginctl lock-session
+      after_sleep_cmd = hyprctl dispatch dpms on
     }
 
     # Screenlock
@@ -12,7 +13,7 @@
         # HYPRLOCK TIMEOUT
         timeout = 360
         # HYPRLOCK ONTIMEOUT
-        on-timeout = ${pkgs.procps}/bin/pkill hyprlock; hyprlock
+        on-timeout = loginctl lock-session
     }
 
     # dpms
@@ -29,7 +30,7 @@
     listener {
         # SUSPEND TIMEOUT
         timeout = 900
-        #SUSPEND ONTIMEOUT
+        # SUSPEND ONTIMEOUT
         on-timeout = systemctl suspend
     }
   '';
