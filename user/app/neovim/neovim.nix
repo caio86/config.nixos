@@ -21,7 +21,7 @@
   home.file.".config/nvim".source = pkgs.fetchFromGitHub {
     owner = "caio86";
     repo = "init.lua";
-    rev = "b7d4c09497f21df56c6f9b8963e86190bc8fc32a";
-    hash = "sha256-nfFBXDlJnreE5+4692RixTntrMT8Qa33Hq2dyAz6hfk=";
+    rev = "e5592ef32d75cd647b7aa7de28ae8b2dbde75847";
+    hash = "sha256-pNXeP0/hyhdmiWBTGhIKjZcIiRNiFEgAsozuSCldl0w=";
   };
 }
