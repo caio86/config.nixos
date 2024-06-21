@@ -21,6 +21,7 @@ in
   };
 
   config = {
+    stylix.enable = true;
     stylix.autoEnable = true;
     stylix.polarity = "dark";
     stylix.image = backgroundImage;
@@ -48,7 +49,7 @@ in
         package = pkgs.noto-fonts-emoji-blob-bin;
       };
       sizes = {
-        terminal = 11;
+        terminal = 12;
         applications = 12;
         popups = 12;
         desktop = 12;
