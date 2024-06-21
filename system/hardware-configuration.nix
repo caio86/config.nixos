@@ -29,8 +29,8 @@
   fileSystems."/media/Windows" =
     {
       device = "/dev/disk/by-uuid/2EF4D510F4D4DAE3";
-      fsType = "ntfs";
-      options = [ "rw" "nofail" "uid=1000" "allow_other" ];
+      fsType = "ntfs-3g";
+      options = [ "rw" "nofail" "uid=1000" "allow_other" "big_writes" ];
     };
 
   swapDevices =
