@@ -139,11 +139,14 @@
         gaps_in = 10; # 5
         gaps_out = 14; # 20
         border_size = 3; # 2
-        cursor_inactive_timeout = 15;
         "col.active_border" = lib.mkForce "0xff${config.lib.stylix.colors.base0E}";
         "col.inactive_border" = lib.mkForce "0x33${config.lib.stylix.colors.base03}";
 
         layout = "dwindle";
+      };
+
+      cursor = {
+        inactive_timeout = 15;
       };
 
       # --------------------------------------#
