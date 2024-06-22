@@ -50,6 +50,8 @@
       terminal = false;
       type = "Application";
     })
+
+    bottles
   ];
 
   services.syncthing.enable = true;
