@@ -37,6 +37,7 @@
     eza
     pass
     wl-clipboard
+    ripdrag
 
     # Media
     feh
