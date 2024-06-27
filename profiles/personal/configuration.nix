@@ -37,6 +37,8 @@
     experimental-features = nix-command flakes
   '';
 
+  services.gnome.gnome-keyring.enable = true;
+
   services.openssh = {
     enable = true;
     openFirewall = true;
@@ -124,8 +126,6 @@
     zsh
     git
     home-manager
-    # wineWowPackages.stable
-    # lutris
   ];
 
   environment.shells = with pkgs; [ zsh ];
@@ -133,14 +133,6 @@
   programs.zsh.enable = true;
 
   fonts.fontDir.enable = true;
-
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal
-    ];
-  };
 
   # List services that you want to enable:
 
