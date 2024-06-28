@@ -13,7 +13,7 @@
     stylix.url = "github:danth/stylix";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager, ... }@inputs:
+  outputs = { self, ... }@inputs:
 
     let
       # --- SYSTEM SETTINGS --- #
@@ -37,14 +37,14 @@
       };
 
       # configure pkgs
-      pkgs = import nixpkgs {
+      pkgs = import inputs.nixpkgs {
         system = systemSettings.system;
         config = {
           allowUnfree = true;
         };
       };
 
-      pkgs-stable = import nixpkgs-stable {
+      pkgs-stable = import inputs.nixpkgs-stable {
         system = systemSettings.system;
         config = {
           allowUnfree = true;
@@ -52,7 +52,7 @@
       };
 
       # configure lib
-      lib = nixpkgs.lib;
+      lib = inputs.nixpkgs.lib;
     in
 
     {
@@ -72,7 +72,7 @@
       };
 
       homeConfigurations = {
-        user = home-manager.lib.homeManagerConfiguration {
+        user = inputs.home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
             (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix")
