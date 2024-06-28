@@ -1,4 +1,4 @@
-{ pkgs, stylix, userSettings, lib, config, ... }:
+{ pkgs, inputs, userSettings, lib, config, ... }:
 
 let
   blurredImage = pkgs.runCommand "blurredImage.png" { } ''
@@ -10,7 +10,7 @@ let
   };
 in
 {
-  imports = [ stylix.homeManagerModules.stylix ];
+  imports = [ inputs.stylix.homeManagerModules.stylix ];
 
   options.stylix = {
     blurredImage = lib.mkOption {

@@ -1,10 +1,10 @@
-{ lib, pkgs, systemSettings, userSettings, nixos-wsl, ... }:
+{ pkgs, systemSettings, userSettings, inputs, ... }:
 
 {
   imports = [
     # include NixOS-WSL modules
     # <nixos-wsl/modules>
-    nixos-wsl.nixosModules.wsl
+    inputs.nixos-wsl.nixosModules.wsl
     ../../system/app/docker.nix
     ../../system/security/gpg.nix
     ../../system/style/stylix.nix

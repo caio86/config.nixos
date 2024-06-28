@@ -66,8 +66,7 @@
             inherit pkgs-stable;
             inherit systemSettings;
             inherit userSettings;
-            inherit (inputs) nixos-wsl;
-            inherit (inputs) stylix;
+            inherit inputs;
           };
         };
       };
@@ -82,7 +81,7 @@
             inherit pkgs-stable;
             inherit systemSettings;
             inherit userSettings;
-            inherit (inputs) stylix;
+            inherit inputs;
           };
         };
       };
