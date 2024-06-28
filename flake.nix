@@ -42,35 +42,48 @@
 
       # configure lib
       lib = inputs.nixpkgs.lib;
+
+      myLib = import ./lib { inherit inputs systemSettings userSettings; };
     in
 
+    with myLib;
     {
       nixosConfigurations = {
-        system = lib.nixosSystem {
-          system = systemSettings.system;
-          modules = [
-            (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix")
-          ]; # load configuration.nix from selected PROFILE
-          specialArgs = {
-            inherit systemSettings;
-            inherit userSettings;
-            inherit inputs;
-          };
-        };
+        # system = lib.nixosSystem {
+        #   system = systemSettings.system;
+        #   modules = [
+        #     (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix")
+        #   ]; # load configuration.nix from selected PROFILE
+        #   specialArgs = {
+        #     inherit systemSettings;
+        #     inherit userSettings;
+        #     inherit inputs;
+        #   };
+        # };
+
+        system = mkSystem systemSettings.system
+          (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix");
       };
 
       homeConfigurations = {
-        user = inputs.home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix")
-          ]; # load home.nix from selected PROFILE
-          extraSpecialArgs = {
-            inherit systemSettings;
-            inherit userSettings;
-            inherit inputs;
-          };
-        };
+        # user = inputs.home-manager.lib.homeManagerConfiguration {
+        #   inherit pkgs;
+        #   modules = [
+        #     (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix")
+        #   ]; # load home.nix from selected PROFILE
+        #   extraSpecialArgs = {
+        #     inherit systemSettings;
+        #     inherit userSettings;
+        #     inherit inputs;
+        #   };
+        # };
+
+        user =
+          mkHome pkgs
+            (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix");
+
+        "caiol@lua" =
+          mkHome pkgs ./profiles/lua/home.nix;
       };
     };
 
