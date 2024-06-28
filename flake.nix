@@ -1,18 +1,6 @@
 {
   description = "Flake of C410l";
 
-  inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "nixpkgs/nixos-23.11";
-
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    nixos-wsl.url = "github:nix-community/nixos-wsl";
-
-    stylix.url = "github:danth/stylix";
-  };
-
   outputs = { self, ... }@inputs:
 
     let
@@ -44,6 +32,7 @@
         };
       };
 
+      # Unused for now
       pkgs-stable = import inputs.nixpkgs-stable {
         system = systemSettings.system;
         config = {
@@ -63,7 +52,6 @@
             (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix")
           ]; # load configuration.nix from selected PROFILE
           specialArgs = {
-            inherit pkgs-stable;
             inherit systemSettings;
             inherit userSettings;
             inherit inputs;
@@ -78,7 +66,6 @@
             (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix")
           ]; # load home.nix from selected PROFILE
           extraSpecialArgs = {
-            inherit pkgs-stable;
             inherit systemSettings;
             inherit userSettings;
             inherit inputs;
@@ -86,4 +73,16 @@
         };
       };
     };
+
+  inputs = {
+    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "nixpkgs/nixos-23.11";
+
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixos-wsl.url = "github:nix-community/nixos-wsl";
+
+    stylix.url = "github:danth/stylix";
+  };
 }
