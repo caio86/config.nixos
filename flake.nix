@@ -82,7 +82,7 @@
           mkHome pkgs
             (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix");
 
-        "caiol@lua" =
+        lua =
           mkHome pkgs ./profiles/lua/home.nix;
       };
     };
@@ -97,5 +97,7 @@
     nixos-wsl.url = "github:nix-community/nixos-wsl";
 
     stylix.url = "github:danth/stylix";
+
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 }
