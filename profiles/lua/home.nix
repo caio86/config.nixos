@@ -1,5 +1,9 @@
-{ config, pkgs, lib, userSettings, ... }:
+{ config, pkgs, userSettings, inputs, ... }:
 
+let
+  secretsFile = ../../secrets.yaml;
+  homeDirectory = config.home.homeDirectory;
+in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -15,9 +19,23 @@
     ../../user/app/tmux/tmux.nix
     ../../user/shell/sh.nix
     ../../user/shell/cli-apps.nix
+    inputs.sops-nix.homeManagerModules.sops
   ];
 
   home.stateVersion = "23.11"; # Please read the comment before changing.
+
+  sops = {
+    age.keyFile = "${homeDirectory}/.config/sops/age/keys.txt";
+
+    defaultSopsFile = "${secretsFile}";
+    validateSopsFiles = false;
+
+    secrets = {
+      "ssh_keys/lua" = {
+        path = "${homeDirectory}/.ssh/id_lua_test";
+      };
+    };
+  };
 
   home.packages = with pkgs; [
     fzf
@@ -31,3 +49,4 @@
     EDITOR = userSettings.editor;
   };
 }
+
