@@ -19,6 +19,7 @@ in
     ../../user/app/tmux/tmux.nix
     ../../user/shell/sh.nix
     ../../user/shell/cli-apps.nix
+    ../../user/style/stylix.nix
     inputs.sops-nix.homeManagerModules.sops
   ];
 
