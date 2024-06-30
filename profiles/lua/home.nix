@@ -33,7 +33,7 @@ in
 
     secrets = {
       "ssh_keys/lua" = {
-        path = "${homeDirectory}/.ssh/id_lua_test";
+        path = "${homeDirectory}/.ssh/id_lua";
       };
     };
   };
