@@ -61,7 +61,7 @@
         #   };
         # };
 
-        system = mkSystem systemSettings.system
+        system = mkSystem
           (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix");
       };
 
@@ -78,12 +78,10 @@
         #   };
         # };
 
-        user =
-          mkHome pkgs
-            (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix");
+        user = mkHome pkgs
+          (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix");
 
-        lua =
-          mkHome pkgs ./profiles/lua/home.nix;
+        lua = mkHome pkgs ./profiles/lua/home.nix;
       };
     };
 

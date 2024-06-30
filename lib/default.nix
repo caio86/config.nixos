@@ -6,11 +6,10 @@ rec {
 
   #=================== Buildables =====================#
 
-  # @param {String} system - the system type
   # @param {Path} config - the path to a configuration.nix file
-  mkSystem = system: config:
+  mkSystem = config:
     inputs.nixpkgs.lib.nixosSystem {
-      inherit system;
+      system = args.systemSettings.system;
 
       modules = [
         config
