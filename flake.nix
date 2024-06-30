@@ -25,7 +25,7 @@
       };
 
       # configure pkgs
-      pkgs = import inputs.nixpkgs {
+      pkgs-unstable = import inputs.nixpkgs {
         system = systemSettings.system;
         config = {
           allowUnfree = true;
@@ -40,48 +40,30 @@
         };
       };
 
+      pkgs = pkgs-unstable;
+
+      home-manager = inputs.home-manager;
+
       # configure lib
       lib = inputs.nixpkgs.lib;
 
-      myLib = import ./lib { inherit inputs systemSettings userSettings; };
+      extraSettings = { inherit inputs systemSettings userSettings; };
+      myLib = import ./lib { inherit inputs pkgs lib home-manager extraSettings; };
     in
 
     with myLib;
     {
       nixosConfigurations = {
-        # system = lib.nixosSystem {
-        #   system = systemSettings.system;
-        #   modules = [
-        #     (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix")
-        #   ]; # load configuration.nix from selected PROFILE
-        #   specialArgs = {
-        #     inherit systemSettings;
-        #     inherit userSettings;
-        #     inherit inputs;
-        #   };
-        # };
 
-        system = mkSystem
-          (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix");
+        system = mkSystem (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix");
+
       };
 
       homeConfigurations = {
-        # user = inputs.home-manager.lib.homeManagerConfiguration {
-        #   inherit pkgs;
-        #   modules = [
-        #     (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix")
-        #   ]; # load home.nix from selected PROFILE
-        #   extraSpecialArgs = {
-        #     inherit systemSettings;
-        #     inherit userSettings;
-        #     inherit inputs;
-        #   };
-        # };
 
-        user = mkHome pkgs
-          (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix");
+        user = mkHome (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix");
+        lua = mkHome ./profiles/lua/home.nix;
 
-        lua = mkHome pkgs ./profiles/lua/home.nix;
       };
     };
 

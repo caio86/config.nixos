@@ -1,40 +1,31 @@
-{ inputs, ... }@args:
+{ inputs, pkgs, lib, home-manager, ... }@args:
 
 rec {
-
-  pkgsFor = sys: inputs.nixpkgs.legacyPackages.${sys};
 
   #=================== Buildables =====================#
 
   # @param {Path} config - the path to a configuration.nix file
   mkSystem = config:
-    inputs.nixpkgs.lib.nixosSystem {
-      system = args.systemSettings.system;
+    lib.nixosSystem {
+      system = args.extraSettings.systemSettings.system;
 
       modules = [
         config
       ];
 
-      specialArgs = {
-        inherit (args) userSettings systemSettings;
-        inherit inputs;
-      };
+      specialArgs = args.extraSettings;
     };
 
-  # @param {Nixpkgs} pkgs - the pkgs to use
-  # @param {Path} config - the path to a configuration.nix file
-  mkHome = pkgs: config:
-    inputs.home-manager.lib.homeManagerConfiguration {
+  # @param {Path} config - the path to a home.nix file
+  mkHome = config:
+    home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
 
       modules = [
         config
       ];
 
-      extraSpecialArgs = {
-        inherit (args) userSettings systemSettings;
-        inherit inputs;
-      };
+      extraSpecialArgs = args.extraSettings;
     };
 
   #===================== Helpers ======================#
