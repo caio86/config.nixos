@@ -1,4 +1,4 @@
-{ pkgs, userSettings, ... }:
+{ config, pkgs, userSettings, ... }:
 
 {
   environment.systemPackages = with pkgs; [ distrobox ];
@@ -15,4 +15,9 @@
     enable = true;
     qemu.runAsRoot = false;
   };
+
+  # Virtual Box
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "${userSettings.username}" ];
+  boot.extraModulePackages = with config.boot.kernelPackages; [ virtualbox ];
 }
