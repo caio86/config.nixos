@@ -200,7 +200,7 @@
         };
 
         "network" = {
-          format = "{ifname}";
+          format = "  {ipaddr}";
           format-wifi = "   {signalStrength}%";
           format-ethernet = "  {ipaddr}";
           format-disconnected = "Not connected";
