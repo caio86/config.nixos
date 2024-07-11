@@ -1,4 +1,4 @@
-{ config, pkgs, userSettings, inputs, ... }:
+{ config, pkgs, userSettings, inputs, lib, ... }:
 
 let
   secretsFile = ../../secrets.yaml;
@@ -24,6 +24,8 @@ in
   ];
 
   home.stateVersion = "23.11"; # Please read the comment before changing.
+
+  stylix.autoEnable = lib.mkForce false;
 
   sops = {
     age.keyFile = "${homeDirectory}/.config/sops/age/keys.txt";
