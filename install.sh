@@ -1,5 +1,4 @@
-#! /usr/bin/env nix-shell
-#! nix-shell -i bash -p git
+#! /usr/bin/env bash
 
 if [[ $# -gt 0 ]]; then
 	SCRIPT_DIR=$1
