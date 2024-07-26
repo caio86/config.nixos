@@ -24,5 +24,8 @@
     vim
     lazygit
     cava
+    sops
+    age
+    ssh-to-age
   ];
 }
