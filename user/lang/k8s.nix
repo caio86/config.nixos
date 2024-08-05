@@ -7,7 +7,7 @@ let
 in
 {
   home.packages = with pkgs; [
-    k3d
+    kind
     kompose
     kubectl
     kubernetes-helm
