@@ -10,8 +10,9 @@ in
     kind
     kompose
     kubectl
-    kubernetes-helm
     kustomize
+    kubernetes-helm
+    helmfile
     # gdk
   ];
 
