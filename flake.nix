@@ -49,6 +49,12 @@
 
       extraSettings = { inherit inputs systemSettings userSettings; };
       myLib = import ./lib { inherit inputs pkgs lib home-manager extraSettings; };
+
+      nodes = [
+        "homelab-0"
+        "homelab-1"
+        "homelab-2"
+      ];
     in
 
     with myLib;
@@ -57,7 +63,23 @@
 
         system = mkSystem (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix");
 
-      };
+      } // builtins.listToAttrs (map
+        (name: {
+          name = name;
+          value = lib.nixosSystem {
+            system = systemSettings.system;
+
+            modules = [
+              inputs.disko.nixosModules.disko
+              ./profiles/homelab/configuration.nix
+            ];
+
+            specialArgs = {
+              meta = { hostname = name; };
+            } // extraSettings;
+          };
+        })
+        nodes);
 
       homeConfigurations = {
 
@@ -79,5 +101,10 @@
     stylix.url = "github:danth/stylix";
 
     sops-nix.url = "github:Mic92/sops-nix";
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }
