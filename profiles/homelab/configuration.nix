@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, meta, pkgs, systemSettings, userSettings, ... }:
+{ meta, pkgs, systemSettings, userSettings, ... }:
 
 let
   disk = "/dev/vda";
@@ -11,7 +11,6 @@ in
   imports =
     [
       # Include the results of the hardware scan.
-      inputs.sops-nix.nixosModules.sops
       (import ./disko-config.nix { device = disk; })
       ./hardware-configuration.nix
       ../../system/security/sops.nix
