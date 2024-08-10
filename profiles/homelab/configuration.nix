@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ meta, pkgs, systemSettings, userSettings, ... }:
+{ config, meta, pkgs, systemSettings, userSettings, inputs, ... }:
 
 let
   disk = "/dev/vda";
@@ -11,8 +11,9 @@ in
   imports =
     [
       # Include the results of the hardware scan.
-      (import ./disko-config.nix { device = disk; })
       ./hardware-configuration.nix
+      (import ./disko-config.nix { device = disk; })
+      inputs.disko.nixosModules.disko
       ../../system/security/sops.nix
       ../../system/app/docker.nix
       (import ../../system/security/sshd.nix {
@@ -56,6 +57,32 @@ in
     LC_TELEPHONE = systemSettings.locale;
     LC_TIME = systemSettings.locale;
   };
+
+  services.k3s = {
+    enable = true;
+    role = "server";
+    tokenFile = config.sops.secrets.k3s_token.path;
+    extraFlags = toString ([
+      "--write-kubeconfig-mode \"0644\""
+      "--cluster-init"
+      "--disable servicelb"
+      "--disable traefik"
+      "--disable local-storage"
+    ] ++ (if meta.hostname == "homelab-0" then [ ] else [
+      "--server https://homelab-0:6443"
+    ]));
+    clusterInit = (meta.hostname == "homelab-0");
+  };
+
+  services.openiscsi = {
+    enable = true;
+    name = "iqn.2016-04.com.open-iscsi:${meta.hostname}";
+  };
+
+  # Fix longhorn
+  systemd.tmpfiles.rules = [
+    "L+ /usr/local/bin - - - - /run/current-system/sw/bin/"
+  ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${userSettings.username} = {
