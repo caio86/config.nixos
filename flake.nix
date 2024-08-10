@@ -47,7 +47,7 @@
       # configure lib
       lib = inputs.nixpkgs.lib;
 
-      extraSettings = { inherit inputs systemSettings userSettings; };
+      extraSettings = { inherit inputs systemSettings userSettings myLib; };
       myLib = import ./lib { inherit inputs pkgs lib home-manager extraSettings; };
 
       nodes = [
@@ -61,22 +61,13 @@
     {
       nixosConfigurations = {
 
-        system = mkSystem (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix");
+        system = mkSystem (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix") { };
 
       } // builtins.listToAttrs (map
         (name: {
           name = name;
-          value = lib.nixosSystem {
-            system = systemSettings.system;
-
-            modules = [
-              inputs.disko.nixosModules.disko
-              ./profiles/homelab/configuration.nix
-            ];
-
-            specialArgs = {
-              meta = { hostname = name; };
-            } // extraSettings;
+          value = mkSystem ./profiles/homelab/configuration.nix {
+            meta = { hostname = name; };
           };
         })
         nodes);

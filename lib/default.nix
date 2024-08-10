@@ -5,7 +5,7 @@ rec {
   #=================== Buildables =====================#
 
   # @param {Path} config - the path to a configuration.nix file
-  mkSystem = config:
+  mkSystem = config: { ... }@xargs:
     lib.nixosSystem {
       system = args.extraSettings.systemSettings.system;
 
@@ -13,7 +13,7 @@ rec {
         config
       ];
 
-      specialArgs = args.extraSettings;
+      specialArgs = args.extraSettings // xargs;
     };
 
   # @param {Path} config - the path to a home.nix file
