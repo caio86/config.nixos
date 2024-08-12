@@ -6,12 +6,12 @@
     ./dbus.nix
     ./fonts.nix
     ./gnome-keyring.nix
+    ./xserver.nix
   ];
 
   environment.systemPackages = with pkgs;
     [
       wayland
-      waydroid
       (sddm-chili-theme.override {
         themeConfig = {
           background = config.stylix.image;
@@ -24,15 +24,6 @@
       })
     ];
 
-  # Configure xwayland
-  services.xserver = {
-    enable = true;
-    xkb = {
-      layout = "br";
-      variant = "";
-      options = "caps:escape";
-    };
-  };
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
@@ -40,9 +31,5 @@
     theme = "chili";
     package = pkgs.sddm;
   };
-
-
-  # Configure console keymap
-  console.keyMap = "br-abnt2";
 }
 
