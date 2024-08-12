@@ -1,9 +1,5 @@
-{ config, pkgs, userSettings, inputs, lib, ... }:
+{ config, pkgs, userSettings, lib, ... }:
 
-let
-  secretsFile = ../../secrets.yaml;
-  homeDirectory = config.home.homeDirectory;
-in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -20,23 +16,16 @@ in
     ../../user/shell/sh.nix
     ../../user/shell/cli-apps.nix
     ../../user/style/stylix.nix
-    inputs.sops-nix.homeManagerModules.sops
+    ../../user/app/sops/sops.nix
   ];
 
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
   stylix.autoEnable = lib.mkForce false;
 
-  sops = {
-    age.keyFile = "${homeDirectory}/.config/sops/age/keys.txt";
-
-    defaultSopsFile = "${secretsFile}";
-    validateSopsFiles = false;
-
-    secrets = {
-      "ssh_keys/lua" = {
-        path = "${homeDirectory}/.ssh/id_lua";
-      };
+  sops.secrets = {
+    "ssh_keys/lua" = {
+      path = "${config.home.homeDirectory}/.ssh/id_lua";
     };
   };
 
