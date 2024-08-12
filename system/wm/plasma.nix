@@ -5,6 +5,7 @@
     ./pipewire.nix
     ./dbus.nix
     ./fonts.nix
+    ./gnome-keyring.nix
   ];
 
   services.xserver = {

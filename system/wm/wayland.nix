@@ -5,6 +5,7 @@
     ./pipewire.nix
     ./dbus.nix
     ./fonts.nix
+    ./gnome-keyring.nix
   ];
 
   environment.systemPackages = with pkgs;

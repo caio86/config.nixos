@@ -13,7 +13,6 @@
         auth include login
       '';
     };
-    # pam.services.login.enableGnomeKeyring = true;
   };
 
   programs = {
