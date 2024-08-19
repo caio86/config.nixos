@@ -16,7 +16,7 @@
     ../../user/shell/sh.nix
     ../../user/shell/cli-apps.nix
     ../../user/style/stylix.nix
-    ../../user/app/sops/sops.nix
+    ../../user/app/sops.nix
   ];
 
   home.stateVersion = "23.11"; # Please read the comment before changing.
