@@ -49,8 +49,6 @@
   networking.firewall.enable = false;
   services.fstrim.enable = true;
 
-  services.flatpak.enable = true;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
