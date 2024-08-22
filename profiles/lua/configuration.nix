@@ -1,4 +1,4 @@
-{ inputs, pkgs, systemSettings, config, ... }:
+{ inputs, pkgs, systemSettings, userSettings, config, ... }:
 
 {
   imports =
@@ -6,8 +6,11 @@
       ./hardware-configuration.nix
       (import ./disko.nix { device = "/dev/vda"; })
       inputs.disko.nixosModules.disko
+      inputs.home-manager.nixosModules.home-manager
       ../../system/security/sops.nix
+      ../../system/security/gpg.nix
       ../../system/app/docker.nix
+      ../../system/wm/plasma.nix
     ];
   # Ensure nix flakes are enabled
   nix.package = pkgs.nixFlakes;
@@ -41,17 +44,43 @@
     LC_TIME = systemSettings.locale;
   };
 
+  home-manager = {
+
+    useGlobalPkgs = true;
+    useUserPackages = true;
+
+    extraSpecialArgs = {
+      inherit userSettings;
+    };
+
+
+    users = {
+      caiol.imports = [
+        inputs.sops-nix.homeManagerModules.sops
+        ./home.nix
+      ];
+    };
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."caiol" = {
     isNormalUser = true;
     hashedPasswordFile = config.sops.secrets.caiol_password.path;
-    shell = pkgs.fish;
+    shell = pkgs.zsh;
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
-  programs.fish.enable = true;
+  programs.zsh.enable = true;
 
   sops.secrets."caiol_password".neededForUsers = true;
+
+  environment.systemPackages = with pkgs; [
+    vim
+    neovim
+    wget
+    git
+    home-manager
+  ];
 
   system.stateVersion = "23.11";
 }
