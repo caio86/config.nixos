@@ -1,4 +1,4 @@
-{ config, pkgs, userSettings, ... }:
+{ pkgs, userSettings, ... }:
 
 {
   environment.systemPackages = with pkgs; [ distrobox ];
@@ -17,7 +17,7 @@
   };
 
   # Virtual Box
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "${userSettings.username}" ];
-  boot.extraModulePackages = with config.boot.kernelPackages; [ virtualbox ];
+  # virtualisation.virtualbox.host.enable = true;
+  # users.extraGroups.vboxusers.members = [ "${userSettings.username}" ];
+  # boot.extraModulePackages = with config.boot.kernelPackages; [ virtualbox ];
 }

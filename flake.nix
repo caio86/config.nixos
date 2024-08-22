@@ -63,6 +63,8 @@
 
         system = mkSystem (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix") { };
 
+        lua = mkSystem ./profiles/lua/configuration.nix { };
+
       } // builtins.listToAttrs (map
         (name: {
           name = name;
