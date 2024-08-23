@@ -4,7 +4,7 @@
   imports =
     [
       ./hardware-configuration.nix
-      (import ./disko.nix { device = "/dev/vda"; })
+      (import ./disko.nix { device = "/dev/sda"; })
       inputs.disko.nixosModules.disko
       inputs.home-manager.nixosModules.home-manager
       ../../system/security/sops.nix
