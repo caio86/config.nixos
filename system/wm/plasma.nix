@@ -9,8 +9,8 @@
     ./xserver.nix
   ];
 
-  services.xserver = {
-    enable = true;
+  services.xserver.enable = true;
+  services = {
     desktopManager.plasma6.enable = true;
     displayManager.sddm.enable = true;
   };
