@@ -42,7 +42,6 @@
     feh
     mpv
     cava
-    nodePackages.live-server
     (pkgs.makeDesktopItem {
       name = "minecraft";
       desktopName = "sklauncher";
