@@ -11,6 +11,7 @@
       ../../system/security/gpg.nix
       ../../system/app/docker.nix
       ../../system/wm/plasma.nix
+      ../../system/style/stylix.nix
     ];
   # Ensure nix flakes are enabled
   nix.package = pkgs.nixFlakes;

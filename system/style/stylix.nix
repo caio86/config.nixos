@@ -9,7 +9,7 @@ in
 {
   imports = [ inputs.stylix.nixosModules.stylix ];
 
-  stylix.autoEnable = false;
+  stylix.autoEnable = true;
   stylix.polarity = "dark";
   stylix.image = backgroundImage;
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/${userSettings.theme}.yaml";

@@ -11,10 +11,14 @@
 
   imports = [
     ../../user/app/git/git.nix
+    ../../user/app/browser/firefox.nix
+    ../../user/app/terminal/kitty.nix
     ../../user/app/neovim/neovim.nix
     ../../user/app/tmux/tmux.nix
     ../../user/shell/sh.nix
     ../../user/shell/cli-apps.nix
+    ../../user/lang/java.nix
+    ../../user/lang/python.nix
     # ../../user/style/stylix.nix
   ];
 
