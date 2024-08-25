@@ -31,7 +31,7 @@
 
   home.packages = with pkgs; [
     # File explorer
-    nautilus
+    gnome.nautilus
     fzf
     bat
     eza
