@@ -7,7 +7,6 @@
     starfetch # Random stars info
     lolcat
     cowsay
-    live-server
     # cava # Visualize audio in terminal
     killall # kill process by name
     bat
