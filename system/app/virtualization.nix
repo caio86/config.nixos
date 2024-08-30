@@ -17,7 +17,9 @@
   };
 
   # Virtual Box
-  # virtualisation.virtualbox.host.enable = true;
-  # users.extraGroups.vboxusers.members = [ "${userSettings.username}" ];
-  # boot.extraModulePackages = with config.boot.kernelPackages; [ virtualbox ];
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableKvm = true;
+  virtualisation.virtualbox.host.enableHardening = false;
+  virtualisation.virtualbox.host.addNetworkInterface = false;
+  users.extraGroups.vboxusers.members = [ "${userSettings.username}" ];
 }
