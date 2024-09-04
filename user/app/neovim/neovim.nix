@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   programs.neovim = {
@@ -18,10 +18,5 @@
     ];
   };
 
-  home.file.".config/nvim".source = pkgs.fetchFromGitHub {
-    owner = "caio86";
-    repo = "init.lua";
-    rev = "6edbbf65731fa1fa26419fc8a129157d1efd2693";
-    hash = "sha256-cnf6qLIFE4B3Y/dNFtgL43iLAAXTpPQkFPVoFP1fwJk=";
-  };
+  xdg.configFile."nvim".source = inputs.neovim-config;
 }

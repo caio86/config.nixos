@@ -99,5 +99,8 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    neovim-config.url = "github:caio86/init.lua";
+    neovim-config.flake = false;
   };
 }

@@ -258,6 +258,22 @@
         "type": "github"
       }
     },
+    "neovim-config": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1725207804,
+        "narHash": "sha256-cnf6qLIFE4B3Y/dNFtgL43iLAAXTpPQkFPVoFP1fwJk=",
+        "owner": "caio86",
+        "repo": "init.lua",
+        "rev": "6edbbf65731fa1fa26419fc8a129157d1efd2693",
+        "type": "github"
+      },
+      "original": {
+        "owner": "caio86",
+        "repo": "init.lua",
+        "type": "github"
+      }
+    },
     "nixos-wsl": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -376,6 +392,7 @@
       "inputs": {
         "disko": "disko",
         "home-manager": "home-manager",
+        "neovim-config": "neovim-config",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-stable": "nixpkgs-stable",
