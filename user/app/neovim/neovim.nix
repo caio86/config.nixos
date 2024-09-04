@@ -4,19 +4,19 @@
   programs.neovim = {
     enable = true;
     vimAlias = true;
+    vimdiffAlias = true;
+    defaultEditor = true;
     withNodeJs = true;
     withPython3 = true;
+
+    extraPackages = with pkgs; [
+      ripgrep
+      fd
+      unzip
+      tree-sitter
+      gcc
+    ];
   };
-
-  home.packages = with pkgs; [
-    ripgrep
-    fd
-    unzip
-    tree-sitter
-    gcc
-
-    xclip
-  ];
 
   home.file.".config/nvim".source = pkgs.fetchFromGitHub {
     owner = "caio86";
