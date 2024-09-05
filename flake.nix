@@ -59,6 +59,8 @@
 
     with myLib;
     {
+      templates = import ./templates;
+
       nixosConfigurations = {
 
         system = mkSystem (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix") { };
