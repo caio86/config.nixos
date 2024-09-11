@@ -14,6 +14,6 @@
   console.keyMap = "br-abnt2";
 
   environment.systemPackages = with pkgs; [
-    xclip
+    xsel
   ];
 }
