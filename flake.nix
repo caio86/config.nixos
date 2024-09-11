@@ -30,6 +30,7 @@
         config = {
           allowUnfree = true;
         };
+        overlays = outputs.overlays;
       };
 
       # Unused for now
@@ -47,7 +48,9 @@
       # configure lib
       lib = inputs.nixpkgs.lib;
 
-      extraSettings = { inherit inputs systemSettings userSettings myLib; };
+      inherit (self) outputs;
+
+      extraSettings = { inherit inputs outputs systemSettings userSettings myLib; };
       myLib = import ./lib { inherit inputs pkgs lib home-manager extraSettings; };
 
       nodes = [
@@ -60,6 +63,8 @@
     with myLib;
     {
       templates = import ./templates;
+
+      overlays = import ./overlays;
 
       nixosConfigurations = {
 
