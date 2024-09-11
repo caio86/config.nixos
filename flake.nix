@@ -51,12 +51,6 @@
 
       extraSettings = { inherit inputs outputs systemSettings userSettings myLib; };
       myLib = import ./lib { inherit inputs pkgs lib home-manager extraSettings; };
-
-      nodes = [
-        "homelab-0"
-        "homelab-1"
-        "homelab-2"
-      ];
     in
 
     with myLib;
@@ -71,14 +65,7 @@
 
         lua = mkSystem ./profiles/lua/configuration.nix { };
 
-      } // builtins.listToAttrs (map
-        (name: {
-          name = name;
-          value = mkSystem ./profiles/homelab/configuration.nix {
-            meta = { hostname = name; };
-          };
-        })
-        nodes);
+      };
 
       homeConfigurations = {
 
