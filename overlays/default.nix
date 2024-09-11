@@ -1,17 +1,17 @@
 {
   modifications = final: prev: {
-    st = prev.st.overrideAttrs (oldAttrs: {
+    st = prev.st.overrideAttrs (oldAttrs: rec {
       src = prev.fetchFromGitHub {
         owner = "LukeSmithxyz";
         repo = "st";
-        rev = "8ab3d03681479263a11b05f7f1b53157f61e8c3b";
-        sha256 = "1brwnyi1hr56840cdx0qw2y19hpr0haw4la9n0rqdn0r2chl8vag";
+        rev = "36d225d71d448bfe307075580f0d8ef81eeb5a87";
+        hash = "sha256-u8E8/aqbL3T4Sz0olazg7VYxq30haRdSB1SRy7MiZiA=";
       };
 
       buildInputs = oldAttrs.buildInputs ++ [ prev.harfbuzz ];
 
-      # configFile = prev.writeText "config.h" (builtins.readFile ./st-config.h);
-      # postPatch = "${oldAttrs.postPatch}\ncp ${configFile} config.h\n";
+      configFile = prev.writeText "config.h" (builtins.readFile ./st-config.h);
+      postPatch = "${oldAttrs.postPatch}\ncp ${configFile} config.h\n";
     });
   };
 }
