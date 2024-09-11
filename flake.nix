@@ -30,7 +30,6 @@
         config = {
           allowUnfree = true;
         };
-        overlays = outputs.overlays;
       };
 
       # Unused for now

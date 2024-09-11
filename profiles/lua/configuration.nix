@@ -1,4 +1,4 @@
-{ inputs, pkgs, systemSettings, userSettings, config, ... }:
+{ inputs, outputs, pkgs, systemSettings, userSettings, config, ... }:
 
 {
   imports =
@@ -19,6 +19,8 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  nixpkgs.overlays = builtins.attrValues outputs.overlays;
 
   # Boot loader
   boot.loader.grub.enable = true;
