@@ -9,8 +9,11 @@
     ./xserver.nix
   ];
 
-  services.xserver = {
-    windowManager.dwm = {
+  services = {
+    displayManager.sddm = {
+      enable = true;
+    };
+    xserver.windowManager.dwm = {
       enable = true;
     };
   };
