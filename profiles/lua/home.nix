@@ -20,6 +20,7 @@
     ../../user/lang/java.nix
     ../../user/lang/python.nix
     ../../user/lang/golang.nix
+    ../../user/style/gtk.nix
     # ../../user/style/stylix.nix
   ];
 
