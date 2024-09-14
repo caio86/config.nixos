@@ -1,6 +1,6 @@
 {
   dev-shell = {
-    path = ./devShells;
+    path = ./dev-shell;
     description = "dev shell with nix flakes";
   };
 
