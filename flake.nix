@@ -1,7 +1,8 @@
 {
   description = "Flake of C410l";
 
-  outputs = { self, ... }@inputs:
+  outputs =
+    { self, ... }@inputs:
 
     let
       # --- SYSTEM SETTINGS --- #
@@ -49,15 +50,51 @@
 
       inherit (self) outputs;
 
-      extraSettings = { inherit inputs outputs systemSettings userSettings myLib; };
-      myLib = import ./lib { inherit inputs pkgs lib home-manager extraSettings; };
+      extraSettings = {
+        inherit
+          inputs
+          outputs
+          systemSettings
+          userSettings
+          myLib
+          ;
+      };
+      myLib = import ./lib {
+        inherit
+          inputs
+          pkgs
+          lib
+          home-manager
+          extraSettings
+          ;
+      };
+
+      # Systems that can run tests:
+      supportedSystems = [ "x86_64-linux" ];
+
+      # Function to generate a set based on supported systems:
+      forAllSystems = inputs.nixpkgs.lib.genAttrs supportedSystems;
+
+      # Attribute set of nixpkgs for each system:
+      nixpkgsFor = forAllSystems (system: import inputs.nixpkgs { inherit system; });
     in
 
     with myLib;
     {
+      # Nix formatter available through 'nix fmt' https://nix-community.github.io/nixpkgs-fmt
+      formatter = forAllSystems (system: inputs.nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
+
       templates = import ./templates;
 
       overlays = import ./overlays;
+
+      devShells = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgsFor.${system};
+        in
+        import ./shell.nix { inherit pkgs; }
+      );
 
       nixosConfigurations = {
 
