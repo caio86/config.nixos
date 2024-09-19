@@ -1,4 +1,10 @@
-{ pkgs, config, userSettings, lib, ... }:
+{
+  pkgs,
+  config,
+  userSettings,
+  lib,
+  ...
+}:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -75,4 +81,3 @@
     EDITOR = userSettings.editor;
   };
 }
-

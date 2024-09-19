@@ -13,7 +13,5 @@
   # Configure console keymap
   console.keyMap = "br-abnt2";
 
-  environment.systemPackages = with pkgs; [
-    xsel
-  ];
+  environment.systemPackages = with pkgs; [ xsel ];
 }

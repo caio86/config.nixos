@@ -35,4 +35,3 @@ pkgs.writeShellScriptBin "tmux-sessionizer" ''
 
   tmux switch-client -t $selected_name
 ''
-

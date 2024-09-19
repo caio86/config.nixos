@@ -9,20 +9,19 @@
     ./xserver.nix
   ];
 
-  environment.systemPackages = with pkgs;
-    [
-      wayland
-      (sddm-chili-theme.override {
-        themeConfig = {
-          background = config.stylix.image;
-        };
-      })
-      (where-is-my-sddm-theme.override {
-        themeConfig.General = {
-          background = config.stylix.image;
-        };
-      })
-    ];
+  environment.systemPackages = with pkgs; [
+    wayland
+    (sddm-chili-theme.override {
+      themeConfig = {
+        background = config.stylix.image;
+      };
+    })
+    (where-is-my-sddm-theme.override {
+      themeConfig.General = {
+        background = config.stylix.image;
+      };
+    })
+  ];
 
   services.displayManager.sddm = {
     enable = true;
@@ -32,4 +31,3 @@
     package = pkgs.sddm;
   };
 }
-

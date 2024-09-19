@@ -12,4 +12,3 @@
     jack.enable = true;
   };
 }
-

@@ -1,4 +1,4 @@
-{ userSettings, ...}:
+{ userSettings, ... }:
 
 {
   programs.git = {

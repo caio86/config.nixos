@@ -1,4 +1,10 @@
-{ config, lib, pkgs, userSettings, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  userSettings,
+  ...
+}:
 
 {
   imports = [
@@ -68,9 +74,7 @@
         "steam -silent"
       ];
 
-      exec = [
-        "swww img ${config.stylix.image}"
-      ];
+      exec = [ "swww img ${config.stylix.image}" ];
 
       # --------------------------------------#
       # Variables                             #
@@ -89,7 +93,6 @@
       # --------------------------------------#
       # Keyboard                              #
       # --------------------------------------#
-
 
       input = {
         kb_layout = "br";
@@ -110,7 +113,6 @@
       # Window                                #
       # --------------------------------------#
 
-
       general = {
         gaps_in = 10; # 5
         gaps_out = 14; # 20
@@ -128,7 +130,6 @@
       # --------------------------------------#
       # Decoration                            #
       # --------------------------------------#
-
 
       decoration = {
         rounding = 10;
@@ -288,4 +289,3 @@
     };
   };
 }
-

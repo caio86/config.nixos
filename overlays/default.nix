@@ -2,7 +2,8 @@
   modifications = final: prev: {
     dwm = prev.dwm.overrideAttrs (oldAttrs: rec {
       configFile = prev.writeText "config.h" (builtins.readFile ./dwm-config.h);
-      postPatch = oldAttrs.postPatch or "" + "\necho 'Using own config file...'\n cp ${configFile} config.def.h";
+      postPatch =
+        oldAttrs.postPatch or "" + "\necho 'Using own config file...'\n cp ${configFile} config.def.h";
     });
 
     st = prev.st.overrideAttrs (oldAttrs: rec {

@@ -5,7 +5,10 @@
 
   services.gns3-server.enable = true;
 
-  users.users.${userSettings.username}.extraGroups = [ "gns3" "ubridge" ];
+  users.users.${userSettings.username}.extraGroups = [
+    "gns3"
+    "ubridge"
+  ];
 
   services.gns3-server.vpcs.enable = true;
   services.gns3-server.ubridge.enable = true;

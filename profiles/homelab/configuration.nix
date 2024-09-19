@@ -2,25 +2,34 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, meta, pkgs, systemSettings, userSettings, inputs, ... }:
+{
+  config,
+  meta,
+  pkgs,
+  systemSettings,
+  userSettings,
+  inputs,
+  ...
+}:
 
 let
   disk = "/dev/vda";
 in
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      (import ./disko-config.nix { device = disk; })
-      inputs.disko.nixosModules.disko
-      ../../system/security/sops.nix
-      ../../system/app/docker.nix
-      (import ../../system/security/sshd.nix {
-        authorizedKeys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICzUs/mygVOuJC+/M16vzINcpUXHsS85EI55V4NL7Oaq caiol@vega" ];
-        inherit userSettings;
-      })
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    (import ./disko-config.nix { device = disk; })
+    inputs.disko.nixosModules.disko
+    ../../system/security/sops.nix
+    ../../system/app/docker.nix
+    (import ../../system/security/sshd.nix {
+      authorizedKeys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICzUs/mygVOuJC+/M16vzINcpUXHsS85EI55V4NL7Oaq caiol@vega"
+      ];
+      inherit userSettings;
+    })
+  ];
 
   # Ensure nix flakes are enabled
   nix.package = pkgs.nixFlakes;
@@ -62,15 +71,16 @@ in
     enable = true;
     role = "server";
     tokenFile = config.sops.secrets.k3s_token.path;
-    extraFlags = toString ([
-      "--write-kubeconfig-mode \"0644\""
-      "--cluster-init"
-      "--disable servicelb"
-      "--disable traefik"
-      "--disable local-storage"
-    ] ++ (if meta.hostname == "homelab-0" then [ ] else [
-      "--server https://homelab-0:6443"
-    ]));
+    extraFlags = toString (
+      [
+        "--write-kubeconfig-mode \"0644\""
+        "--cluster-init"
+        "--disable servicelb"
+        "--disable traefik"
+        "--disable local-storage"
+      ]
+      ++ (if meta.hostname == "homelab-0" then [ ] else [ "--server https://homelab-0:6443" ])
+    );
     clusterInit = (meta.hostname == "homelab-0");
   };
 
@@ -80,18 +90,14 @@ in
   };
 
   # Fix longhorn
-  systemd.tmpfiles.rules = [
-    "L+ /usr/local/bin - - - - /run/current-system/sw/bin/"
-  ];
+  systemd.tmpfiles.rules = [ "L+ /usr/local/bin - - - - /run/current-system/sw/bin/" ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${userSettings.username} = {
     isNormalUser = true;
     description = userSettings.name;
     extraGroups = [ "wheel" ];
-    packages = with pkgs; [
-      tree
-    ];
+    packages = with pkgs; [ tree ];
     hashedPassword = "$6$hf3aPlHmdbfeZczH$NTqZ7WcaJ4gDaI/yFWkRWISL6Agz8eYYSw9Ya68/PezMBvpTZl.bPrASWxgxkYrXr5U3e/7h4eLEuhMEw5LaH/";
   };
 
@@ -105,7 +111,6 @@ in
     zsh
     git
   ];
-
 
   sops = {
     secrets = {

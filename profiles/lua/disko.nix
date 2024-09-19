@@ -1,6 +1,8 @@
-{ device ? throw "Set this to your disk device, e.g. /dev/sda"
-, ...
-}: {
+{
+  device ? throw "Set this to your disk device, e.g. /dev/sda",
+  ...
+}:
+{
   disko.devices = {
     disk.main = {
       inherit device;
@@ -36,12 +38,19 @@
                 };
 
                 "@home" = {
-                  mountOptions = [ "subvol=home" "compress=zstd" ];
+                  mountOptions = [
+                    "subvol=home"
+                    "compress=zstd"
+                  ];
                   mountpoint = "/home";
                 };
 
                 "@nix" = {
-                  mountOptions = [ "subvol=nix" "compress=zstd" "noatime" ];
+                  mountOptions = [
+                    "subvol=nix"
+                    "compress=zstd"
+                    "noatime"
+                  ];
                   mountpoint = "/nix";
                 };
               };
@@ -52,4 +61,3 @@
     };
   };
 }
-

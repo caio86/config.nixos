@@ -1,4 +1,11 @@
-{ pkgs, inputs, userSettings, lib, config, ... }:
+{
+  pkgs,
+  inputs,
+  userSettings,
+  lib,
+  config,
+  ...
+}:
 
 let
   blurredImage = pkgs.runCommand "blurredImage.png" { } ''

@@ -16,4 +16,3 @@
     "application/pdf" = "firefox.desktop";
   };
 }
-

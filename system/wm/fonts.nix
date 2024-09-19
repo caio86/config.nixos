@@ -6,7 +6,13 @@
     enableDefaultPackages = true;
     packages = with pkgs; [
       # Fonts
-      (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "Inconsolata" ]; })
+      (nerdfonts.override {
+        fonts = [
+          "FiraCode"
+          "JetBrainsMono"
+          "Inconsolata"
+        ];
+      })
       dejavu_fonts
       font-awesome
       noto-fonts-emoji-blob-bin
@@ -21,4 +27,3 @@
     };
   };
 }
-

@@ -1,21 +1,31 @@
-{ inputs, outputs, pkgs, systemSettings, userSettings, config, ... }:
+{
+  inputs,
+  outputs,
+  pkgs,
+  systemSettings,
+  userSettings,
+  config,
+  ...
+}:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      (import ./disko.nix { device = "/dev/sda"; })
-      inputs.disko.nixosModules.disko
-      inputs.home-manager.nixosModules.home-manager
-      ../../system/security/sops.nix
-      ../../system/security/gpg.nix
-      ../../system/app/docker.nix
-      ../../system/wm/dwm.nix
-      ../../system/style/stylix.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    (import ./disko.nix { device = "/dev/sda"; })
+    inputs.disko.nixosModules.disko
+    inputs.home-manager.nixosModules.home-manager
+    ../../system/security/sops.nix
+    ../../system/security/gpg.nix
+    ../../system/app/docker.nix
+    ../../system/wm/dwm.nix
+    ../../system/style/stylix.nix
+  ];
   # Ensure nix flakes are enabled
   nix.package = pkgs.nixFlakes;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -57,7 +67,6 @@
       inherit inputs;
     };
 
-
     users = {
       caiol.imports = [
         inputs.sops-nix.homeManagerModules.sops
@@ -71,7 +80,10 @@
     isNormalUser = true;
     hashedPasswordFile = config.sops.secrets.caiol_password.path;
     shell = pkgs.zsh;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
   };
 
   programs.zsh.enable = true;

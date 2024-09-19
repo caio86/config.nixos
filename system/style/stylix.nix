@@ -1,4 +1,9 @@
-{ pkgs, inputs, userSettings, ... }:
+{
+  pkgs,
+  inputs,
+  userSettings,
+  ...
+}:
 
 let
   backgroundImage = pkgs.fetchurl {

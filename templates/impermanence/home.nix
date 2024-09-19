@@ -1,9 +1,7 @@
 { pkgs, inputs, ... }:
 
-{ 
-  imports = [
-    inputs.impermanence.nixosModules.home-manager.impermanence
-  ];
+{
+  imports = [ inputs.impermanence.nixosModules.home-manager.impermanence ];
 
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
@@ -25,9 +23,7 @@
         method = "symlink";
       }
     ];
-    files = [
-      ".screenrc"
-    ];
+    files = [ ".screenrc" ];
     allowOther = true;
   };
 }

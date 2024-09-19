@@ -16,4 +16,3 @@
     DEFAULT_BROWSER = "${pkgs.brave}/bin/brave";
   };
 }
-

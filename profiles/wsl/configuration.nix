@@ -1,4 +1,10 @@
-{ pkgs, systemSettings, userSettings, inputs, ... }:
+{
+  pkgs,
+  systemSettings,
+  userSettings,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -26,7 +32,10 @@
   ];
 
   # Experimental features
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Ensure nix flakes are enabled
   nix.package = pkgs.nixFlakes;
@@ -59,7 +68,10 @@
   users.users.${userSettings.username} = {
     isNormalUser = true;
     description = userSettings.name;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [ ];
     uid = 1000;
   };

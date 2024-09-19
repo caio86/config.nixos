@@ -2,24 +2,28 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, systemSettings, userSettings, ... }:
+{
+  pkgs,
+  systemSettings,
+  userSettings,
+  ...
+}:
 
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ../../system/hardware-configuration.nix
-      ../../system/hardware/openrgb.nix
-      ../../system/app/docker.nix
-      ../../system/app/wireshark.nix
-      ../../system/app/gamemode.nix
-      ../../system/app/steam.nix
-      ../../system/app/virtualization.nix
-      ../../system/security/gpg.nix
-      ../../system/security/automount.nix
-      ../../system/wm/hyprland.nix
-      ../../system/style/stylix.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ../../system/hardware-configuration.nix
+    ../../system/hardware/openrgb.nix
+    ../../system/app/docker.nix
+    ../../system/app/wireshark.nix
+    ../../system/app/gamemode.nix
+    ../../system/app/steam.nix
+    ../../system/app/virtualization.nix
+    ../../system/security/gpg.nix
+    ../../system/security/automount.nix
+    ../../system/wm/hyprland.nix
+    ../../system/style/stylix.nix
+  ];
 
   # Fix nix path
   nix.nixPath = [
@@ -29,7 +33,10 @@
   ];
 
   # Experimental features
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Ensure nix flakes are enabled
   nix.package = pkgs.nixFlakes;
@@ -84,7 +91,6 @@
     };
   };
 
-
   # Networking
   networking.hostName = systemSettings.hostname; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -114,7 +120,12 @@
   users.users.${userSettings.username} = {
     isNormalUser = true;
     description = userSettings.name;
-    extraGroups = [ "networkmanager" "wheel" "input" "dialout" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "input"
+      "dialout"
+    ];
     packages = with pkgs; [ ];
     uid = 1000;
   };

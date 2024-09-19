@@ -2,9 +2,7 @@
 
 {
   # Import wayland config
-  imports = [
-    ./wayland.nix
-  ];
+  imports = [ ./wayland.nix ];
 
   # Security
   security = {
@@ -25,8 +23,5 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    wl-clipboard
-  ];
+  environment.systemPackages = with pkgs; [ wl-clipboard ];
 }
-

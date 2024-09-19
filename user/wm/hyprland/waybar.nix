@@ -1,4 +1,9 @@
-{ config, pkgs, userSettings, ... }:
+{
+  config,
+  pkgs,
+  userSettings,
+  ...
+}:
 
 {
   programs.waybar = {
@@ -19,9 +24,7 @@
           "hyprland/window"
         ];
 
-        modules-center = [
-          "hyprland/workspaces"
-        ];
+        modules-center = [ "hyprland/workspaces" ];
 
         modules-right = [
           "pulseaudio"
@@ -221,7 +224,13 @@
           format-charging = "  {capacity}%";
           format-plugged = "  {capacity}%";
           format-alt = "{icon}  {time}";
-          format-icons = [ " " " " " " " " " " ];
+          format-icons = [
+            " "
+            " "
+            " "
+            " "
+            " "
+          ];
         };
 
         "pulseaudio" = {
@@ -239,7 +248,11 @@
             phone = "";
             portable = "";
             car = "";
-            default = [ "" " " " " ];
+            default = [
+              ""
+              " "
+              " "
+            ];
           };
           on-click = "pavucontrol";
         };
