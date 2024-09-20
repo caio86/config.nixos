@@ -9,6 +9,11 @@
     description = "python dev shell flake";
   };
 
+  pop-dev-shell = {
+    path = ./pop-dev-shell;
+    description = "dev shell with justfile for building and running c++ code";
+  };
+
   nixos = {
     path = ./nixosModule;
     description = "nixos flake template";
