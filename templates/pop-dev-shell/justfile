@@ -1,8 +1,11 @@
 default:
   @just --list
 
-run source: ( build  source )
+build:
+  g++ ./main.cpp -o output
+
+run: build
   ./output <input.txt | tee output.txt
 
-build source:
-  g++ {{invocation_directory()}}/{{ source }} -o output
+watch:
+  watchexec -e "cpp" -r "just run"
