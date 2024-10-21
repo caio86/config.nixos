@@ -18,7 +18,16 @@
         default = pkgs.mkShell {
           packages = with pkgs; [
             nixfmt-rfc-style
+            python312Packages.venvShellHook
           ];
+
+          venvDir = "./venv";
+          postVenvCreation = ''
+            unset SOURCE_DATE_EPOCH
+          '';
+          postShellHook = ''
+            unset SOURCE_DATE_EPOCH
+          '';
         };
       });
     };
