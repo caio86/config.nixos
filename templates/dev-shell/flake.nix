@@ -15,7 +15,7 @@
     in
     {
       devShells = forAllSystems (pkgs: {
-        default = pkgs.mkShell { packages = with pkgs; [ ]; };
+        default = pkgs.mkShell { packages = with pkgs; [ nixfmt-rfc-style ]; };
       });
     };
 }
