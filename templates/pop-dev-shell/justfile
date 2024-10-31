@@ -1,11 +1,25 @@
 default:
   @just --list
 
-build:
-  g++ ./main.cpp -o output
+[no-cd]
+build src="main.cpp":
+  # Building
+  g++ {{src}} -o output --std=c++17 -O3
 
-run: build
-  ./output <input.txt | tee output.txt
+[no-cd]
+_run input="input.txt":
+  # Running with input: {{input}}
+  ./output <{{input}} | tee {{input}}_out
 
-watch:
-  watchexec -e "cpp" -r "just run"
+[no-cd]
+run +inputs="input.txt": build
+  #!/usr/bin/env bash
+  set -euo pipefail
+
+  for file in {{inputs}}; do
+    just _run $file
+  done
+
+[no-cd]
+watch +inputs="input.txt":
+  watchexec -e "cpp" -r "just run {{inputs}}"
