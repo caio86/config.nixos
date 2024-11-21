@@ -13,6 +13,7 @@ let
     cat = "bat -p";
     open = "xdg-open";
     gitfetch = "onefetch";
+    neofetch = "fastfetch";
     duh = "sudo du -h --one-file-system --max-depth=1 --threshold=100k";
     dfh = "df -h -x tmpfs -x devtmpfs";
     dc = "docker compose";

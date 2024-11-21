@@ -3,7 +3,7 @@
 {
   # usefull CLI apps
   home.packages = with pkgs; [
-    neofetch # System info
+    fastfetch # System info
     starfetch # Random stars info
     lolcat
     cowsay
