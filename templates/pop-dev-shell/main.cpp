@@ -1,6 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+#ifdef  LOCAL
+#define D(x) cerr << #x << " = " << x << endl;
+#else
+#define D(x)
+#endif
+
 void solve() {}
 
 int main() {
