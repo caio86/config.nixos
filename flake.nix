@@ -88,14 +88,6 @@
 
       overlays = import ./overlays;
 
-      devShells = forAllSystems (
-        system:
-        let
-          pkgs = nixpkgsFor.${system};
-        in
-        import ./shell.nix { inherit pkgs; }
-      );
-
       nixosConfigurations = {
 
         system = mkSystem (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix") { };
