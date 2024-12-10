@@ -261,11 +261,11 @@
     "neovim-config": {
       "flake": false,
       "locked": {
-        "lastModified": 1726958295,
-        "narHash": "sha256-lZjxCLn6qf2OgVTqoMbQfssOIp5R2u16gJH8CxSckM0=",
+        "lastModified": 1733801587,
+        "narHash": "sha256-N96MHrEuLcQG7kHH8lK7eTb8I6kfJPoJHMZ08mP5lbA=",
         "owner": "caio86",
         "repo": "init.lua",
-        "rev": "7b4c100107126898431c2e9631df989f54d728c1",
+        "rev": "7517dbd57d7ea1f04291cb308d34aaf5ff751971",
         "type": "github"
       },
       "original": {
