@@ -24,6 +24,7 @@
       nil
 
       # FORMATTERS
+      nodePackages.prettier
       nixfmt-rfc-style
       stylua
     ];
