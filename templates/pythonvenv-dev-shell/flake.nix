@@ -16,10 +16,7 @@
     {
       devShells = forAllSystems (pkgs: {
         default = pkgs.mkShell {
-          packages = with pkgs; [
-            nixfmt-rfc-style
-            python312Packages.venvShellHook
-          ];
+          packages = with pkgs; [ python312Packages.venvShellHook ];
 
           venvDir = "./venv";
           postVenvCreation = ''

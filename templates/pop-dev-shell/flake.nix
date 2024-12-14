@@ -18,7 +18,6 @@
         default = pkgs.mkShell {
           packages = with pkgs; [
             watchexec
-            nixfmt-rfc-style
             clang-tools
             just
             gcc
