@@ -9,6 +9,16 @@
     description = "python dev shell flake";
   };
 
+  go-dev-shell = {
+    path = ./go-dev-shell;
+    description = "go dev shell flake";
+  };
+
+  js-dev-shell = {
+    path = ./js-dev-shell;
+    description = "js dev shell flake";
+  };
+
   pop-dev-shell = {
     path = ./pop-dev-shell;
     description = "dev shell with justfile for building and running c++ code";
